@@ -1,3 +1,30 @@
-.col-tam{
-  background-color: aliceblue;
+.big-image-container {
+  margin: 20px 0px 10px 0px;
+  transition: 0.2s;
+  &:hover {
+    opacity: 0.8;
+    cursor: pointer;
+  }
+}
+.small-image-container {
+  margin: 20px 0px 0px 0px;
+  transition: 0.2s;
+  &:hover {
+    opacity: 0.8;
+    cursor: pointer;
+  }
+}
+.example-image-container{
+  border: 2px solid black;
+  border-radius: 2px;
+  padding: 0px;
+  margin: 20px 0;
+
+  &__example-image{
+    margin: 5px;
+    &:hover {
+      opacity: 0.8;
+      cursor: pointer;
+    }
+  }
 }
