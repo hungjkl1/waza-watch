@@ -1,0 +1,33 @@
+.bg-grey{
+    background-color: #ffffff;
+    min-height: 100px;
+}
+.logo-nav{
+    width: 50px;
+}
+.bg-blue{
+    background-color: #325d79;
+}
+.nav-div-center{
+    display: flex;
+    align-items: center;
+    align-content: center;
+}
+.nav-left{
+    width: 300px;
+}
+.nav-right{
+    width: 300px
+}
+.nav-bg{
+    background: black;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    a{
+        color: white;
+        width: 16.66%;
+        text-align: center;
+        text-transform: uppercase;
+    }
+}
