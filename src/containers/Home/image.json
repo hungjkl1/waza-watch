@@ -1,10 +1,12 @@
 {
   "bigImage": [
     {
-      "url": "https://scontent.cdninstagram.com/vp/b0c7c3f96464f70cdf60787fd90901ca/5DFCB385/t51.2885-15/sh0.08/e35/s640x640/61960820_2238224112881100_7047045906274148686_n.jpg?_nc_ht=scontent.cdninstagram.com"
+      "url": "https://scontent-lga3-1.cdninstagram.com/vp/4df920e774dc873a02509740008348e8/5DB3C8A9/t51.2885-15/e35/47690519_263753637637054_1041080898234792197_n.jpg?_nc_ht=scontent-lga3-1.cdninstagram.com",
+      "title": "Phong cách"
     },
     {
-      "url": "https://scontent-lga3-1.cdninstagram.com/vp/bef870f4465a2d94b4726613283e31ee/5DA71329/t51.2885-15/e35/56356662_426592001446252_3820727793919299310_n.jpg?_nc_ht=scontent-lga3-1.cdninstagram.com"
+      "url": "https://scontent-lga3-1.cdninstagram.com/vp/14d4bd4937490eb64e1b03466243fc9a/5DEC0F68/t51.2885-15/e35/40030496_328919667676428_6315555297721057280_n.jpg?_nc_ht=scontent-lga3-1.cdninstagram.com",
+      "title": "Duyên dáng"
     }
   ],
   "smallImage": [
@@ -19,6 +21,32 @@
     },
     {
       "url": "https://scontent-lga3-1.cdninstagram.com/vp/c16a1bd5c0559a00722fca9d0bfaa667/5DC887FE/t51.2885-15/e35/46297610_933966856803403_3921835385876855582_n.jpg?_nc_ht=scontent-lga3-1.cdninstagram.com"
+    }
+  ],
+  "exampleImage":[
+    {
+      "url": "https://cdn.shopify.com/s/files/1/0650/7427/products/fte3005-silver-grey-gray-leather-minimalist-wrist-womens-ladies-petite-watch-fte-freedom-to-exist_900x.jpg?v=1544982365"
+    },
+    {
+      "url": "https://cdn.shopify.com/s/files/1/0650/7427/products/fte3006-silver-tan-leather-minimalist-wrist-womens-ladies-petite-watch-fte-freedom-to-exist_900x.jpg?v=1544982397"
+    },
+    {
+      "url": "https://cdn.shopify.com/s/files/1/0650/7427/products/fte3016-gold-black-dial-tan-brown-leather-minimalist-wrist-womens-ladies-petite-watch-fte-freedom-to-exist_900x.jpg?v=1552765187"
+    },
+    {
+      "url": "https://cdn.shopify.com/s/files/1/0650/7427/products/fte3014-rose-gold-dark-brown-watch_900x.jpg?v=1552765239"
+    }
+  ],
+  "founders":[
+    {
+      "name": "MẠNH HÙNG",
+      "url": "https://scontent.fsgn2-2.fna.fbcdn.net/v/t1.0-9/59916847_2140422186180273_389349192088158208_n.jpg?_nc_cat=103&_nc_oc=AQmFg_WSEsjuzEdBoG5AemM7OW7cGrww-P06InUyPA5aKqe_UZo9JNuf4WFOMJM4Uhw&_nc_ht=scontent.fsgn2-2.fna&oh=043e2491618668b70f7254650993511c&oe=5E22034B",
+      "description":"Một chàng trai hiền lành và cute"
+    },
+    {
+      "name": "THANH TÂM",
+      "url": "https://scontent.fsgn2-1.fna.fbcdn.net/v/t1.0-9/27657242_1922724761373231_8217605874945173482_n.jpg?_nc_cat=107&_nc_oc=AQmuy9dpFsXh7ksgb2c1dSc2kqeUwaRkIhXYP0MWuY23yyLIJrgXYCAioRbFPCHHq2o&_nc_ht=scontent.fsgn2-1.fna&oh=5c245a8063debf9b6182ea8b1fe018b7&oe=5E2421ED",
+      "description":"Một chàng trai hiền lành và duyên dáng"
     }
   ]
 }
