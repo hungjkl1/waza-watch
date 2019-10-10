@@ -1,0 +1,121 @@
+[{
+  "id": 1,
+  "name": "Bitchip",
+  "price": 12578,
+  "description": "Personal history of unspecified digestive disease",
+  "img": "http://dummyimage.com/200x200.jpg/ff4444/ffffff"
+}, {
+  "id": 2,
+  "name": "Flexidy",
+  "price": 19092,
+  "description": "Other erythema multiforme",
+  "img": "http://dummyimage.com/200x200.jpg/ff4444/ffffff"
+}, {
+  "id": 3,
+  "name": "Ventosanzap",
+  "price": 13169,
+  "description": "Herpetic infection of penis",
+  "img": "http://dummyimage.com/200x200.jpg/cc0000/ffffff"
+}, {
+  "id": 4,
+  "name": "Duobam",
+  "price": 13816,
+  "description": "Other specified infestations",
+  "img": "http://dummyimage.com/200x200.jpg/cc0000/ffffff"
+}, {
+  "id": 5,
+  "name": "Alphazap",
+  "price": 16204,
+  "description": "Cyst of bone (localized), unspecified",
+  "img": "http://dummyimage.com/200x200.jpg/ff4444/ffffff"
+}, {
+  "id": 6,
+  "name": "Kanlam",
+  "price": 17004,
+  "description": "Special screening for unspecified malignant neoplasms",
+  "img": "http://dummyimage.com/200x200.jpg/ff4444/ffffff"
+}, {
+  "id": 7,
+  "name": "Veribet",
+  "price": 18889,
+  "description": "Isolated tracheal or bronchial tuberculosis, tubercle bacilli found (in sputum) by microscopy",
+  "img": "http://dummyimage.com/200x200.jpg/5fa2dd/ffffff"
+}, {
+  "id": 8,
+  "name": "Overhold",
+  "price": 12015,
+  "description": "Wrist joint replacement",
+  "img": "http://dummyimage.com/200x200.jpg/cc0000/ffffff"
+}, {
+  "id": 9,
+  "name": "Lotlux",
+  "price": 15905,
+  "description": "Menstrual migraine, with intractable migraine, so stated, with status migrainosus",
+  "img": "http://dummyimage.com/200x200.jpg/cc0000/ffffff"
+}, {
+  "id": 10,
+  "name": "Flexidy",
+  "price": 19012,
+  "description": "Psychogenic paranoid psychosis",
+  "img": "http://dummyimage.com/200x200.jpg/dddddd/000000"
+}, {
+  "id": 11,
+  "name": "Lotstring",
+  "price": 12515,
+  "description": "Open supracondylar fracture of femur",
+  "img": "http://dummyimage.com/200x200.jpg/5fa2dd/ffffff"
+}, {
+  "id": 12,
+  "name": "Solarbreeze",
+  "price": 10747,
+  "description": "Infundibular pulmonic stenosis",
+  "img": "http://dummyimage.com/200x200.jpg/cc0000/ffffff"
+}, {
+  "id": 13,
+  "name": "Sub-Ex",
+  "price": 16489,
+  "description": "Meningitis due to gram-negative bacteria, not elsewhere classified",
+  "img": "http://dummyimage.com/200x200.jpg/dddddd/000000"
+}, {
+  "id": 14,
+  "name": "Otcom",
+  "price": 14838,
+  "description": "Nontraffic accident involving motor-driven snow vehicle injuring rider of animal; occupant of animal-drawn vehicle",
+  "img": "http://dummyimage.com/200x200.jpg/5fa2dd/ffffff"
+}, {
+  "id": 15,
+  "name": "Stronghold",
+  "price": 16099,
+  "description": "Unspecified lymphoid leukemia, in remission",
+  "img": "http://dummyimage.com/200x200.jpg/dddddd/000000"
+}, {
+  "id": 16,
+  "name": "Cardify",
+  "price": 19617,
+  "description": "Motor vehicle traffic accident involving collision with other vehicle injuring motorcyclist",
+  "img": "http://dummyimage.com/200x200.jpg/dddddd/000000"
+}, {
+  "id": 17,
+  "name": "Opela",
+  "price": 19747,
+  "description": "Congenital bowing of unspecified long bones of leg",
+  "img": "http://dummyimage.com/200x200.jpg/dddddd/000000"
+}, {
+  "id": 18,
+  "name": "Otcom",
+  "price": 15390,
+  "description": "Better eye: severe vision impairment; lesser eye: near-total vision impairment",
+  "img": "http://dummyimage.com/200x200.jpg/dddddd/000000"
+}, {
+  "id": 19,
+  "name": "Veribet",
+  "price": 16132,
+  "description": "Hemarthrosis, pelvic region and thigh",
+  "img": "http://dummyimage.com/200x200.jpg/5fa2dd/ffffff"
+}, {
+  "id": 20,
+  "name": "Lotstring",
+  "price": 12432,
+  "description": "Tick-borne fever",
+  "img": "http://dummyimage.com/200x200.jpg/5fa2dd/ffffff"
+}]

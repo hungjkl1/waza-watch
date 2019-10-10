@@ -1,0 +1,36 @@
+.container{
+  margin-top: 20px
+}
+
+.menu-container {
+  margin: 10px 0;
+
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 20px;
+
+  &__ul {
+    text-align: left;
+    list-style-type: none;
+    li a {
+      opacity: 0.8;
+      transition: 0.2s;
+      color: black;
+      &:hover {
+        color: black;
+        opacity: 1;
+        font-weight: bold;
+      }
+    }
+
+    li{
+      transition: 0.2s;
+      &:hover {
+        background-color: lightgray;
+      }
+    }
+  }
+}
+.col--2 {
+  background-color: red;
+}

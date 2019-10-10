@@ -1,0 +1,9 @@
+.product-container {
+  padding: 10px 0;
+  margin: 10px 0;
+  transition: 0.7s;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
