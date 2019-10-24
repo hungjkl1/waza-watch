@@ -7,6 +7,7 @@ import NavigationBar from '../containers/NavigationBar';
 import Products from '../containers/Products';
 import ProductDetail from '../containers/ProductDetail';
 import Footer from '../containers/Footer';
+import NotFound from '../containers/NotFound';
 
 export default class AppRouters extends Component {
   render() {
@@ -18,6 +19,7 @@ export default class AppRouters extends Component {
             <Route path='/' component={Home} exact={true} />
             <Route exact path='/products' component={Products} />
             <Route path='/products/:name' children={ProductDetail} />
+            <Route component={NotFound} />
           </Switch>
         </div>
         <Footer />

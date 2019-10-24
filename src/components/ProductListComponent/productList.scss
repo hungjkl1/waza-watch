@@ -1,9 +1,23 @@
-.product-container {
-  padding: 10px 0;
-  margin: 10px 0;
-  transition: 0.7s;
+.productlist-component {
 
-  &:hover {
-    transform: scale(1.1);
+  .link-product{
+    text-decoration: none;
+    color: black;
+  }
+
+  .product-container {
+    padding: 10px 0;
+    margin: 10px 0;
+    transition: 0.7s;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    &__image {
+      width: 100%;
+      max-width: 200px;
+      height: auto;
+    }
   }
 }

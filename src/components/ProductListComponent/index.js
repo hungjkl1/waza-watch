@@ -10,16 +10,16 @@ const formatNumber = (num) => {
 
 const ProductList = () => {
   return (
-    <div>
+    <div className='productlist-component'>
       <Container>
         <Row>
           {
             products.map((item) => {
               return (
                 <Col xs={6} sm={6} md={3}>
-                  <Link to={'/products/' + item.name}>
+                  <Link to={'/products/' + item.name} className='link-product'>
                     <div className='product-container'>
-                      <img src={item.img} alt={item.name} />
+                      <img className='product-container__image' src={item.img} alt={item.name} />
                       <p>{item.name}</p>
                       <p>{formatNumber(item.price)} VND</p>
                     </div>
@@ -28,7 +28,6 @@ const ProductList = () => {
               )
             })
           }
-
         </Row>
       </Container>
     </div>

@@ -2,7 +2,8 @@ import React from 'react';
 import { Nav, Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-import './styles.scss'
+import './styles.scss';
+
 const NavbarComponent = () => {
   return (
     <div>
@@ -16,7 +17,7 @@ const NavbarComponent = () => {
         </Nav>
         <Nav className="ml-auto mr-auto">
           <Nav.Link className='nav-div-center' href="#home"><div>
-            <img className='logo-nav' src='http://logok.org/wp-content/uploads/2015/03/Hublot-logo-340x214.png' alt='error' />
+            <img className='logo-nav' src='http://www.myiconfinder.com/uploads/iconsets/256-256-27836c2559cf3f445f078b79b5322247.png' alt='error' />
           </div></Nav.Link>
         </Nav>
         <Nav className='nav-right' >
@@ -36,7 +37,7 @@ const NavbarComponent = () => {
         <Nav.Link href="#features">Contact Us</Nav.Link>
         <Link to="/products">Products</Link>
       </Nav>
-      
+
     </div>
   );
 }

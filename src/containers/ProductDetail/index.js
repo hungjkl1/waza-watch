@@ -7,7 +7,7 @@ const ProductDetail = (props) => {
       <Container>
         <Row>
           <Col md={8}>
-
+            <img src='https://ysjournal.com/wp-content/uploads/2014/03/sample_overlay.gif' alt='product_img'/>
           </Col>
 
           <Col md={4}>
