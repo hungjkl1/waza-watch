@@ -1,15 +1,11 @@
 import React from 'react';
 import './App.css';
-// Page
-import Home from './containers/Home';
-import Product from './containers/Products';
-import NavigationBar from './containers/NavigationBar';
+import AppRouter from './routes/AppRouters';
 
 function App() {
   return (
     <div className="App">
-      <NavigationBar/>
-      <Product />
+      <AppRouter />
     </div>
   );
 }
