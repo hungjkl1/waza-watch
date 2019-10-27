@@ -2,44 +2,75 @@ import React from 'react';
 import { Nav, Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
+import LoginModal from '../LoginModal';
+import CartModal from '../CartModal';
 import './styles.scss';
 
-const NavbarComponent = () => {
-  return (
-    <div>
-      <Navbar bg="grey" variant="light">
-        <Nav className='nav-left'>
-          <Nav.Link className='nav-div-center' href="#home"><div>
-            <b>
+class NavbarComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showLogin: false,
+      showCart: false
+    };
+  };
+
+  handleShowLogin = () => {
+    this.setState({ showLogin: true })
+  }
+  handleHideLogin = () => {
+    this.setState({ showLogin: false })
+  }
+
+  handleShowCart = () => {
+    this.setState({ showCart: true })
+  }
+  handleHideCart = () => {
+    this.setState({ showCart: false })
+  }
+
+  render() {
+    return (
+      <div>
+        <Navbar bg="light" expand="lg">
+          <Link to='/'>
+            <Navbar.Brand>
+              <img
+                src="http://www.myiconfinder.com/uploads/iconsets/256-256-27836c2559cf3f445f078b79b5322247.png"
+                width="30"
+                height="30"
+                className="d-inline-block align-top"
+                alt="React Bootstrap logo"
+              />
               Waza Watch
-          </b>
-          </div></Nav.Link>
-        </Nav>
-        <Nav className="ml-auto mr-auto">
-          <Nav.Link className='nav-div-center' href="#home"><div>
-            <img className='logo-nav' src='http://www.myiconfinder.com/uploads/iconsets/256-256-27836c2559cf3f445f078b79b5322247.png' alt='error' />
-          </div></Nav.Link>
-        </Nav>
-        <Nav className='nav-right' >
-          <Nav.Item href="#home" className='ml-auto'>
-            <div>
-              <img className='logo-nav' src='img/cart.png' alt='error' />
-            </div>
-          </Nav.Item>
-        </Nav>
-      </Navbar>
+          </Navbar.Brand>
+          </Link>
 
-      <Nav className="ml-auto nav-bg">
-        <Link to='/'>Home</Link>
-        <Nav.Link href="#pricing">Man</Nav.Link>
-        <Nav.Link href="#pricing">Woman</Nav.Link>
-        <Nav.Link href="#pricing">Brands</Nav.Link>
-        <Nav.Link href="#features">Contact Us</Nav.Link>
-        <Link to="/products">Products</Link>
-      </Nav>
+          <Nav className="">
+            <Link className='nav-link' to='/products'>Sản phẩm</Link>
+            <Link className='nav-link' to='/products'>Liên hệ</Link>
+          </Nav>
 
-    </div>
-  );
+          <Nav className="ml-auto">
+            <Nav.Link onClick={this.handleShowLogin}>Đăng nhập</Nav.Link>
+            <Nav.Link onClick={this.handleShowCart}>Giỏ hàng
+              <img
+                width='22' height='22' className="d-inline-block align-top ml-2"
+                src="https://img.icons8.com/cotton/64/000000/shopping-cart--v1.png" />
+            </Nav.Link>
+          </Nav>
+        </Navbar>
+
+        <LoginModal
+          show={this.state.showLogin}
+          hide={this.handleHideLogin} />
+
+        <CartModal
+          show={this.state.showCart}
+          hide={this.handleHideCart} />
+      </div>
+    );
+  }
 }
 
 export default NavbarComponent;
