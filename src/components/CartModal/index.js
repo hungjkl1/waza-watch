@@ -1,59 +1,52 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Modal, Button, Form } from 'react-bootstrap';
 
-class CartModal extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      cartItems: []
-    }
-  }
-  componentDidMount() {
-    const json = localStorage.getItem('cartItems');
-    const cartItems = JSON.parse(json);
+const CartModal = (props) => {
 
-    if (cartItems) {
-      this.setState(() => ({ cartItems }))
-    }
+  const wao = () => {
+    props.dispatch({type: 'ADD_ITEM'})
   }
-
-  handleClear = () => {
-    localStorage.removeItem('cartItems');
-    this.setState(() => ({ cartItems: [] }))
-  }
-  render() {
-    console.log(this.props.cartItems.length);
-    return (
-      <Modal show={this.props.show} onHide={this.props.hide} >
-        <Modal.Header>
-          Giỏ hàng của bạn
+  
+  return (
+    <Modal show={props.show} onHide={props.hide} >
+      <Modal.Header>
+        Giỏ hàng của bạn
         </Modal.Header>
-        <Modal.Body>
-          {this.props.cartItems.length === 0 &&
-            <div>
-              <p align='center'>Bạn chưa có sản phẩm nào</p>
-            </div>
-          }
-
-          {this.props.cartItems.length > 0 &&
-            <ul>
-              {
-                this.props.cartItems.map((item) =>
-                  <li>
-                    <p>{item.name}</p>
-                  </li>
-                )
-              }
-            </ul>
-          }
-        </Modal.Body>
-        <Modal.Footer>
+      <Modal.Body>
+        {props.cartItems.length === 0 &&
           <div>
-            <Button onClick={this.handleClear}>Thanh toán </Button>
+            <p align='center'>Bạn chưa có sản phẩm nào</p>
           </div>
-        </Modal.Footer>
-      </Modal>
-    )
+        }
+
+        {props.cartItems.length > 0 &&
+          <ul>
+            {
+              props.cartItems.map((item) =>
+                <li>
+                  <p>{item.name}</p>
+                </li>
+              )
+            }
+          </ul>
+        }
+
+      </Modal.Body>
+      <Modal.Footer>
+        <div>
+          <Button>Thanh toán </Button>
+          <Button onClick={wao}>wao </Button>
+        </div>
+      </Modal.Footer>
+    </Modal>
+  )
+};
+
+const mapStateToProps = (state) => {
+  return {
+    cartItems: state.cartItems
   };
-}
-export default CartModal;
+};
+
+export default connect(mapStateToProps)(CartModal);

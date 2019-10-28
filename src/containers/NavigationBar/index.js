@@ -15,17 +15,8 @@ class NavigationBar extends React.Component {
       cartItems: []
     };
   };
-  // Get data from Local Storage for Cart
-  handleGetCartItems = () => {
-    const json = localStorage.getItem('cartItems');
-    const cartItems = JSON.parse(json);
-    
-    if (cartItems) {
-      this.setState(() => ({ cartItems }))
-    }
-  };
 
-  // Modal control
+  // ---  Modal control --- //
   handleShowLogin = () => {
     this.setState({ showLogin: true })
   }
@@ -34,7 +25,7 @@ class NavigationBar extends React.Component {
   }
 
   handleShowCart = () => {
-    this.handleGetCartItems()
+    //this.handleGetCartItems();
     this.setState({ showCart: true })
   }
   handleHideCart = () => {
@@ -65,7 +56,7 @@ class NavigationBar extends React.Component {
 
           <Nav className="ml-auto">
             <Nav.Link onClick={this.handleShowLogin}>Đăng nhập</Nav.Link>
-            <Nav.Link onClick={this.handleShowCart}>Giỏ hàng
+            <Nav.Link onClick={this.handleShowCart}>Giỏ hàng [{this.state.cartItems.length}]
               <img
                 width='22' height='22' className="d-inline-block align-top ml-2"
                 src="https://img.icons8.com/cotton/64/000000/shopping-cart--v1.png" />
@@ -78,7 +69,6 @@ class NavigationBar extends React.Component {
           hide={this.handleHideLogin} />
 
         <CartModal
-          cartItems={this.state.cartItems}
           show={this.state.showCart}
           hide={this.handleHideCart} />
       </div>

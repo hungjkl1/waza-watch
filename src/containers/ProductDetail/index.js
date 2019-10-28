@@ -1,34 +1,30 @@
 import React from 'react';
+import Swal from 'sweetalert2';
+import { connect } from 'react-redux';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 
 class ProductDetail extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      cartItems: []
-    };
-  };
 
-  handleAddItemToCart(e) {
+  handleAddItemToCart = (e) => {
     e.preventDefault();
-    const newItem = {
+    const item = {
       name: e.target.name.value,
       quantity: e.target.quantity.value
     };
 
-    const json = localStorage.getItem('cartItems');
-    const cartItems = JSON.parse(json);
-    
-    if (cartItems) {
-      const newCartItems = [...cartItems, newItem];
-      const json = JSON.stringify(newCartItems);
-      localStorage.setItem('cartItems', json)
+    this.props.addItem(item);
 
-    } else {
-      const newCartItems = [newItem];
-      const json = JSON.stringify(newCartItems);
-      localStorage.setItem('cartItems', json)
-    }
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top',
+      showConfirmButton: false,
+      timer: 1500
+    })
+
+    Toast.fire({
+      type: 'success',
+      title: 'Đã thêm vào giỏ hàng'
+    })
   };
 
   render() {
@@ -51,10 +47,10 @@ class ProductDetail extends React.Component {
                       <Form.Control hidden name='name' type='string' value={this.props.match.params.name} />
                       <Row>
                         <Col>
-                          <Form.Label column sm="2">Số lượng </Form.Label>
+                          <Form.Label column >Số lượng </Form.Label>
                         </Col>
                         <Col>
-                          <Form.Control name='quantity' type='number' />
+                          <Form.Control name='quantity' type='number' defaultValue='1' />
                         </Col>
                       </Row>
                     </Form.Group>
@@ -70,4 +66,11 @@ class ProductDetail extends React.Component {
     )
   }
 }
-export default ProductDetail;
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addItem: (item) => { dispatch({ type: 'ADD_ITEM', item }) }
+  }
+}
+
+export default connect(null, mapDispatchToProps)(ProductDetail);
