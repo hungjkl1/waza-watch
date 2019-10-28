@@ -34,6 +34,7 @@ class NavigationBar extends React.Component {
   }
 
   handleShowCart = () => {
+    this.handleGetCartItems()
     this.setState({ showCart: true })
   }
   handleHideCart = () => {

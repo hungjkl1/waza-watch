@@ -22,23 +22,23 @@ class CartModal extends React.Component {
     this.setState(() => ({ cartItems: [] }))
   }
   render() {
-    console.log(this.state.cartItems.length);
+    console.log(this.props.cartItems.length);
     return (
       <Modal show={this.props.show} onHide={this.props.hide} >
         <Modal.Header>
           Giỏ hàng của bạn
         </Modal.Header>
         <Modal.Body>
-          {this.state.cartItems.length === 0 &&
+          {this.props.cartItems.length === 0 &&
             <div>
               <p align='center'>Bạn chưa có sản phẩm nào</p>
             </div>
           }
 
-          {this.state.cartItems.length > 0 &&
+          {this.props.cartItems.length > 0 &&
             <ul>
               {
-                this.state.cartItems.map((item) =>
+                this.props.cartItems.map((item) =>
                   <li>
                     <p>{item.name}</p>
                   </li>
