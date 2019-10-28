@@ -1,19 +1,59 @@
 import React from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 
-const CartModal = (props) => {
-  return (
-    <Modal show={props.show} onHide={props.hide} >
-      <Modal.Header>
-        Giỏ hàng của bạn
-      </Modal.Header>
-      <Modal.Body>
-        Giỏ hàng của bạn hiện đang trống
-      </Modal.Body>
-      <Modal.Footer>
-        
-      </Modal.Footer>
-    </Modal>
-  )
+class CartModal extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      cartItems: []
+    }
+  }
+  componentDidMount() {
+    const json = localStorage.getItem('cartItems');
+    const cartItems = JSON.parse(json);
+
+    if (cartItems) {
+      this.setState(() => ({ cartItems }))
+    }
+  }
+
+  handleClear = () => {
+    localStorage.removeItem('cartItems');
+    this.setState(() => ({ cartItems: [] }))
+  }
+  render() {
+    console.log(this.state.cartItems.length);
+    return (
+      <Modal show={this.props.show} onHide={this.props.hide} >
+        <Modal.Header>
+          Giỏ hàng của bạn
+        </Modal.Header>
+        <Modal.Body>
+          {this.state.cartItems.length === 0 &&
+            <div>
+              <p align='center'>Bạn chưa có sản phẩm nào</p>
+            </div>
+          }
+
+          {this.state.cartItems.length > 0 &&
+            <ul>
+              {
+                this.state.cartItems.map((item) =>
+                  <li>
+                    <p>{item.name}</p>
+                  </li>
+                )
+              }
+            </ul>
+          }
+        </Modal.Body>
+        <Modal.Footer>
+          <div>
+            <Button onClick={this.handleClear}>Thanh toán </Button>
+          </div>
+        </Modal.Footer>
+      </Modal>
+    )
+  };
 }
 export default CartModal;

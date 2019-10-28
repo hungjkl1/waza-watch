@@ -1,32 +1,42 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Col, Row, Container, Card, Button } from 'react-bootstrap';
+import { Col, Row, Container, Card, Button, Carousel } from 'react-bootstrap';
 // Image
 import image from './image.json';
 // Style
 import './home.scss';
-const handleClick = () => {
-  console.log("Hello")
-}
 const Home = (props) => {
   return (
     <div>
       <Container>
         <Row>
-          {
-            image.bigImage.map((item) => {
-              return (
-                <Col sm={12} md={6}>
-                  <div className='big-image-container'>
-                    <img src={item.url} onClick={handleClick}
-                      alt="example"
-                      width='100%' />
-                    <h1 className="big-image-container__title">{item.title}</h1>
-                  </div>
-                </Col>
-              )
-            })
-          }
+          <Col>
+            <Carousel>
+              <Carousel.Item>
+                <img
+                  className="d-block w-100"
+                  src="img/watch.jpg"
+                  alt="First slide"
+                />
+                <Carousel.Caption>
+                  <h3>Các kiểu mẫu đặc sắc</h3>
+                  <p>Thu hút mọi ánh nhìn từ kiểu mẫu lạ mắt.</p>
+                </Carousel.Caption>
+              </Carousel.Item>
+
+              <Carousel.Item>
+                <img
+                  className="d-block w-100"
+                  src="img/watch1.jpg"
+                  alt="First slide"
+                />
+                <Carousel.Caption>
+                  <h3>Độc đáo, bắt mắt, sang trọng</h3>
+                  <p>Những kiểu dáng đẹp và sang trọng nhất.</p>
+                </Carousel.Caption>
+              </Carousel.Item>
+            </Carousel>
+          </Col>
         </Row>
 
         <Row>

@@ -1,10 +1,5 @@
 import React from 'react';
-import { Nav, Navbar } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 
-import LoginModal from '../LoginModal';
-import CartModal from '../CartModal';
-import './styles.scss';
 
 class NavbarComponent extends React.Component {
   constructor(props) {

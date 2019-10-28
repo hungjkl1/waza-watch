@@ -18,7 +18,7 @@ export default class AppRouters extends Component {
           <Switch>
             <Route path='/' component={Home} exact={true} />
             <Route exact path='/products' component={Products} />
-            <Route path='/products/:name' children={ProductDetail} />
+            <Route path='/products/:name' component={ProductDetail} />
             <Route component={NotFound} />
           </Switch>
         </div>
