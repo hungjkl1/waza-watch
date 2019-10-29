@@ -5,6 +5,7 @@ const cartItemsDefault = cartItems ? cartItems : [];
 
 const cartReducer = (state = cartItemsDefault, action) => {
   switch (action.type) {
+
     case 'ADD_ITEM':
       const json = localStorage.getItem('cartItems');
       const cartItems = JSON.parse(json);
@@ -19,8 +20,11 @@ const cartReducer = (state = cartItemsDefault, action) => {
         const json = JSON.stringify(newCartItems);
         localStorage.setItem('cartItems', json)
       }
-
       return [...state, action.item];
+      
+    case 'CLEAR_ITEM':
+      localStorage.removeItem('cartItems');
+      return state = [];
 
     default:
       return state

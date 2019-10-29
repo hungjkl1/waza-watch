@@ -1,6 +1,7 @@
 import React from 'react';
 import { Nav, Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import LoginModal from '../../components/LoginModal';
 import CartModal from '../../components/CartModal';
@@ -12,25 +13,23 @@ class NavigationBar extends React.Component {
     this.state = {
       showLogin: false,
       showCart: false,
-      cartItems: []
     };
   };
 
   // ---  Modal control --- //
   handleShowLogin = () => {
     this.setState({ showLogin: true })
-  }
+  };
   handleHideLogin = () => {
     this.setState({ showLogin: false })
-  }
+  };
 
   handleShowCart = () => {
-    //this.handleGetCartItems();
     this.setState({ showCart: true })
-  }
+  };
   handleHideCart = () => {
     this.setState({ showCart: false })
-  }
+  };
 
   render() {
     return (
@@ -56,7 +55,7 @@ class NavigationBar extends React.Component {
 
           <Nav className="ml-auto">
             <Nav.Link onClick={this.handleShowLogin}>Đăng nhập</Nav.Link>
-            <Nav.Link onClick={this.handleShowCart}>Giỏ hàng [{this.state.cartItems.length}]
+            <Nav.Link onClick={this.handleShowCart}>Giỏ hàng [{this.props.cartItems.length}]
               <img
                 width='22' height='22' className="d-inline-block align-top ml-2"
                 src="https://img.icons8.com/cotton/64/000000/shopping-cart--v1.png" />
@@ -76,4 +75,10 @@ class NavigationBar extends React.Component {
   }
 }
 
-export default NavigationBar;
+const mapStateToProps = (state) => {
+  return { 
+    cartItems: state.cartItems 
+  };
+};
+
+export default connect(mapStateToProps)(NavigationBar);

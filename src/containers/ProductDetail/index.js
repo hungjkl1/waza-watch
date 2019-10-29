@@ -12,7 +12,7 @@ class ProductDetail extends React.Component {
       quantity: e.target.quantity.value
     };
 
-    this.props.addItem(item);
+    this.props.dispatch({type: 'ADD_ITEM', item})
 
     const Toast = Swal.mixin({
       toast: true,
@@ -55,7 +55,7 @@ class ProductDetail extends React.Component {
                       </Row>
                     </Form.Group>
 
-                    <Button type="submit">Thêm vào giỏ hàng</Button>
+                    <Button type="submit" >Thêm vào giỏ hàng</Button>
                   </Form>
                 </div>
               </div>
@@ -67,10 +67,4 @@ class ProductDetail extends React.Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addItem: (item) => { dispatch({ type: 'ADD_ITEM', item }) }
-  }
-}
-
-export default connect(null, mapDispatchToProps)(ProductDetail);
+export default connect(null, null)(ProductDetail);

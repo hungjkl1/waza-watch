@@ -1,13 +1,23 @@
 import React from 'react';
+import Swal from 'sweetalert2';
 import { connect } from 'react-redux';
-import { Modal, Button, Form } from 'react-bootstrap';
+import { Modal, Button, Form, Row, Col, Container } from 'react-bootstrap';
 
 const CartModal = (props) => {
 
-  const wao = () => {
-    props.dispatch({type: 'ADD_ITEM'})
+  // Clear all item in cart
+  const handleClearCart = () => {
+    props.hide();
+    props.dispatch({ type: 'CLEAR_ITEM' })
+
+    Swal.fire({
+      type: 'success',
+      title: 'Thanh toán thành công',
+      timer: 1000,
+      showConfirmButton: false,
+    });
   }
-  
+
   return (
     <Modal show={props.show} onHide={props.hide} >
       <Modal.Header>
@@ -25,20 +35,22 @@ const CartModal = (props) => {
             {
               props.cartItems.map((item) =>
                 <li>
-                  <p>{item.name}</p>
+                  <p>{item.name}: {item.quantity}</p>
                 </li>
               )
             }
           </ul>
         }
-
+        <Container>
+          <Row>
+            <Button onClick={handleClearCart}>Thanh toán </Button>
+          </Row>
+        </Container>
       </Modal.Body>
-      <Modal.Footer>
-        <div>
-          <Button>Thanh toán </Button>
-          <Button onClick={wao}>wao </Button>
-        </div>
-      </Modal.Footer>
+
+
+
+
     </Modal>
   )
 };
