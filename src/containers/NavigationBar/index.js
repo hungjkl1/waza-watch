@@ -1,5 +1,5 @@
 import React from 'react';
-import { Nav, Navbar } from 'react-bootstrap';
+import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -48,19 +48,24 @@ class NavigationBar extends React.Component {
           </Navbar.Brand>
           </Link>
 
-          <Nav className="">
-            <Link className='nav-link' to='/products'>Sản phẩm</Link>
-            <Link className='nav-link' to='/products'>Liên hệ</Link>
-          </Nav>
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse id="responsive-navbar-nav">
+            {/* Right item */}
+            <Nav className="mr-auto">
+              <Link className='nav-link' to='/products'>Sản phẩm</Link>
+              <Link className='nav-link' to='/products'>Liên hệ</Link>
+            </Nav>
 
-          <Nav className="ml-auto">
-            <Nav.Link onClick={this.handleShowLogin}>Đăng nhập</Nav.Link>
-            <Nav.Link onClick={this.handleShowCart}>Giỏ hàng [{this.props.cartItems.length}]
-              <img
-                width='22' height='22' className="d-inline-block align-top ml-2"
-                src="https://img.icons8.com/cotton/64/000000/shopping-cart--v1.png" />
-            </Nav.Link>
-          </Nav>
+            {/* Left item */}
+            <Nav>
+              <Nav.Link onClick={this.handleShowLogin}>Đăng nhập</Nav.Link>
+              <Nav.Link onClick={this.handleShowCart}>Giỏ hàng [{this.props.cartItems.length}]
+                    <img
+                  width='22' height='22' className="d-inline-block align-top ml-2"
+                  src="https://img.icons8.com/cotton/64/000000/shopping-cart--v1.png" />
+              </Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
         </Navbar>
 
         <LoginModal
@@ -76,8 +81,8 @@ class NavigationBar extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return { 
-    cartItems: state.cartItems 
+  return {
+    cartItems: state.cartItems
   };
 };
 

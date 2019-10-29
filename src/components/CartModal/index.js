@@ -47,10 +47,6 @@ const CartModal = (props) => {
           </Row>
         </Container>
       </Modal.Body>
-
-
-
-
     </Modal>
   )
 };
