@@ -21,7 +21,7 @@ const cartReducer = (state = cartItemsDefault, action) => {
         localStorage.setItem('cartItems', json)
       }
       return [...state, action.item];
-      
+
     case 'CLEAR_ITEM':
       localStorage.removeItem('cartItems');
       return state = [];

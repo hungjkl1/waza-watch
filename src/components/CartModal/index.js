@@ -11,6 +11,8 @@ const CartModal = (props) => {
     props.dispatch({ type: 'CLEAR_ITEM' })
 
     Swal.fire({
+      toast: true,
+      position: 'top',
       type: 'success',
       title: 'Thanh toán thành công',
       timer: 1000,

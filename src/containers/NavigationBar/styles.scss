@@ -5,6 +5,16 @@
 .logo-nav{
     width: 50px;
 }
+.logo{
+    &-brand{
+        -webkit-filter: invert(100%);
+        filter: invert(100%);
+    }
+    &-cart{
+        -webkit-filter: invert(100%);
+        filter: invert(100%);
+    }
+}
 .bg-blue{
     background-color: #325d79;
 }

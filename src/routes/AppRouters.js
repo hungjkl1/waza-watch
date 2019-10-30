@@ -22,7 +22,6 @@ export default class AppRouters extends Component {
             <Route component={NotFound} />
           </Switch>
         </div>
-        <Footer />
       </BrowserRouter>
     )
   }
