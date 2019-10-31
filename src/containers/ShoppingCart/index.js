@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Form from './Form';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { Container, Row, Col, Table, Button } from 'react-bootstrap';
 import './shoppingcart.scss';
 
@@ -18,6 +19,9 @@ class ShoppingCart extends Component {
     })
     return totalPrice;
   }
+  handleRemoveItem = (item) => {
+    this.props.dispatch({ type: 'REMOVE_ITEM', item })
+  }
   renderForm = () => {
     const json = localStorage.getItem('user');
     const user = JSON.parse(json);
@@ -28,11 +32,16 @@ class ShoppingCart extends Component {
     return (
       <div className='component-shopping-cart'>
         <Container>
+
           {this.props.cartItems.length === 0 &&
             <div>
               <p align='center'>Bạn chưa có sản phẩm nào</p>
+              <p align='center'>
+                Hãy đến trang <Link to='/products'>sản phẩm</Link> để chọn lựa sản phẩm nhé !
+              </p>
             </div>
           }
+
           {this.props.cartItems.length > 0 &&
             <Row>
               <Col md={8}>
@@ -53,7 +62,7 @@ class ShoppingCart extends Component {
                         <td>{item.price} VND</td>
                         <td>{item.quantity}</td>
                         <td>{item.quantity * item.price} VND</td>
-                        <td><Button variant="danger" size='sm'>X</Button></td>
+                        <td><Button variant="danger" size='sm' onClick={() => this.handleRemoveItem(item)}>X</Button></td>
                       </tr>)}
                   </tbody>
                 </Table>
@@ -62,7 +71,7 @@ class ShoppingCart extends Component {
                 <div className='total-price'>
                   <h2>Tổng số tiền</h2>
                   <h4>{this.getTotalPrice()} VND</h4>
-                  
+
                   {this.renderForm()}
                 </div>
               </Col>

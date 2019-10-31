@@ -1,7 +1,9 @@
 import React from 'react';
-import { Container, Col, Row } from 'react-bootstrap';
+import { Container, Col, Row, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import products from './products.json';
+import Swal from 'sweetalert2';
 import './productList.scss';
 
 // Formatting number of price
@@ -19,10 +21,28 @@ class ProductList extends React.Component {
 
   // FIXME : Để Fetch data với API
   componentDidMount() {
-
     this.setState(() => ({
       products: products
     }));
+  };
+
+  addItemToCart = (item) => {
+    this.props.dispatch({
+      type: 'ADD_ITEM',
+      item, quantity: 1
+    });
+    // --- Sweet alert --- //
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top',
+      showConfirmButton: false,
+      timer: 1500
+    })
+
+    Toast.fire({
+      type: 'success',
+      title: 'Đã thêm vào giỏ hàng'
+    })
   };
 
   render() {
@@ -34,7 +54,7 @@ class ProductList extends React.Component {
               this.state.products.map((item) => {
                 return (
                   <Col xs={6} sm={6} md={3}>
-                    {/* Link đến chi tiết sản phẩem */}
+                    {/* Link đến chi tiết sản phẩm */}
                     <Link to={'/products/' + item.id} className='link-product'>
                       <div className='product-container'>
                         <img className='product-container__image' src={item.img} alt={item.name} />
@@ -42,6 +62,10 @@ class ProductList extends React.Component {
                         <p>{formatNumber(item.price)} VND</p>
                       </div>
                     </Link>
+
+                    <Button variant='secondary' onClick={() => this.addItemToCart(item)}>
+                      Thêm vào giỏ hàng
+                     </Button>
                   </Col>
                 )
               })
@@ -52,4 +76,5 @@ class ProductList extends React.Component {
     )
   }
 }
-export default ProductList;
+
+export default connect(null, null)(ProductList);
