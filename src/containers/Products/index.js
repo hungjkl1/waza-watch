@@ -2,6 +2,7 @@ import React from 'react';
 import { Container, Col, Row, Table } from 'react-bootstrap';
 import ProductList from '../../components/ProductListComponent';
 // Style
+import {Link} from 'react-router-dom';
 import './products.scss';
 
 
@@ -16,20 +17,20 @@ const Products = (props) => {
 
             <div className='menu-container'>
               <div className='menu-container__child'>
-                <h5 align="center">Các loại đồng hồ</h5>
+                <h5 align="left">Các loại đồng hồ</h5>
                 <ui className='menu-container__ul'>
-                  <li align='center'><a href='/'>Đồng hồ Nam</a></li>
-                  <li align='center'><a href='/'>Đồng hồ Nữ</a></li>
-                  <li align='center'><a href='/'>Đồng hồ rẻ tiền</a></li>
+                  <li align='left'><a href='/'>Đồng hồ Nam</a></li>
+                  <li align='left'><a href='/'>Đồng hồ Nữ</a></li>
+                  <li align='left'><a href='/'>Đồng hồ rẻ tiền</a></li>
                 </ui>
               </div>
 
               <div className='menu-container__child'>
-                <h5 align="center">Màu sắc</h5>
+                <h5 align="left">Màu sắc</h5>
                 <ui className='menu-container__ul'>
-                  <li align='center'><a href='/'>Nâu đâm</a></li>
-                  <li align='center'><a href='/'>Xanh nhạt</a></li>
-                  <li align='center'><a href='/'>Hồng hà</a></li>
+                  <li align='left'><a href='/'>Nâu đâm</a></li>
+                  <li align='left'><a href='/'>Xanh nhạt</a></li>
+                  <li align='left'><a href='/'>Hồng hà</a></li>
                 </ui>
               </div>
             </div>

@@ -37,14 +37,15 @@ class ProductDetail extends React.Component {
             </Col>
 
             <Col md={4}>
-              <div className='product-info-container'>
-                <h2>Gia: 10,000 VND</h2>
-                <p>Thong tin san pham</p>
+              <div className='product-info-container text-left'>
+                <h2>Giá: 10,000 VND</h2>
+                <h4>Thông tin sản phẩm</h4>
 
                 <div>
                   <Form onSubmit={this.handleAddItemToCart}>
                     <Form.Group>
                       <Form.Control hidden name='name' type='string' value={this.props.match.params.name} />
+                      <Container>
                       <Row>
                         <Col>
                           <Form.Label column >Số lượng </Form.Label>
@@ -53,6 +54,7 @@ class ProductDetail extends React.Component {
                           <Form.Control name='quantity' type='number' defaultValue='1' />
                         </Col>
                       </Row>
+                      </Container>
                     </Form.Group>
 
                     <Button type="submit" >Thêm vào giỏ hàng</Button>

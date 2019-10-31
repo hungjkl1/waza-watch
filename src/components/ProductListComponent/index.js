@@ -20,10 +20,12 @@ const ProductList = () => {
                   <Link to={'/products/' + item.name} className='link-product'>
                     <div className='product-container'>
                       <img className='product-container__image' src={item.img} alt={item.name} />
-                      <p>{item.name}</p>
-                      <p>{formatNumber(item.price)} VND</p>
-                    </div>
-                  </Link>
+                      </div>
+                      <div>{item.name}</div>
+                      </Link>
+                      <div className='product-container-button'>
+                        <div className='btn btn-block product-container-button__button'> <i class="fa fa-cart-plus"></i> {formatNumber(item.price)} VND</div>
+                      </div>
                 </Col>
               )
             })

@@ -66,8 +66,8 @@ class NavigationBar extends React.Component {
               {/* SHOPPING CART */}
               <Nav.Link onClick={this.handleShowCart}>Giỏ hàng [{this.props.cartItems.length}]
                     <img
-                  width='22' height='22' className="logo-cart d-inline-block align-top ml-2"
-                  src="https://img.icons8.com/cotton/64/000000/shopping-cart--v2.png" />
+                    width='22' height='22' alt='' className="logo-cart d-inline-block align-top ml-2"
+                    src="https://img.icons8.com/cotton/64/000000/shopping-cart--v2.png" />
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>
