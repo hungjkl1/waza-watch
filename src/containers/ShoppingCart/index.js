@@ -48,6 +48,7 @@ class ShoppingCart extends Component {
                 <Table >
                   <thead>
                     <tr>
+                      <th>Hình ảnh</th>
                       <th>Tên sản phẩm</th>
                       <th>Giá tiền</th>
                       <th>Số lượng</th>
@@ -58,6 +59,7 @@ class ShoppingCart extends Component {
                   <tbody>
                     {this.props.cartItems.map((item, index) =>
                       <tr key={index}>
+                        <td><img src={item.img} width='30' /></td>
                         <td>{item.name}</td>
                         <td>{item.price} VND</td>
                         <td>{item.quantity}</td>

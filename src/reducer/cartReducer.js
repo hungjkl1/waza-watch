@@ -59,8 +59,6 @@ const cartReducer = (state = cartItemsDefault, action) => {
       localStorage.removeItem('cartItems');
       return state = [];
 
-
-
     default:
       return state
   }
