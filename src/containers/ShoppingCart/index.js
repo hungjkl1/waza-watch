@@ -8,9 +8,7 @@ import './shoppingcart.scss';
 class ShoppingCart extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      showForm: false
-    }
+    this.state = {}
   }
   getTotalPrice = () => {
     let totalPrice = 0;
@@ -27,6 +25,12 @@ class ShoppingCart extends Component {
     const user = JSON.parse(json);
 
     return <Form user={user} />
+  }
+  changeQuantity = (item, quantity) => {
+    this.props.dispatch({
+      type: 'CHANGE_ITEM_QUANTITY',
+      item, quantity
+    })
   }
   render() {
     return (
@@ -62,7 +66,15 @@ class ShoppingCart extends Component {
                         <td><img src={item.img} width='30' /></td>
                         <td>{item.name}</td>
                         <td>{item.price} VND</td>
-                        <td>{item.quantity}</td>
+                        <td>
+                          <div>
+                            <Button className='mr-2' variant="secondary" size='sm'
+                              onClick={() => this.changeQuantity(item, item.quantity - 1)}> - </Button>
+                            {item.quantity}
+                            <Button className='ml-2' variant="secondary" size='sm'
+                              onClick={() => this.changeQuantity(item, item.quantity + 1)}> + </Button>
+                          </div>
+                        </td>
                         <td>{item.quantity * item.price} VND</td>
                         <td><Button variant="danger" size='sm' onClick={() => this.handleRemoveItem(item)}>X</Button></td>
                       </tr>)}

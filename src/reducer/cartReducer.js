@@ -4,10 +4,11 @@ const cartItems = JSON.parse(json);
 const cartItemsDefault = cartItems ? cartItems : [];
 
 const cartReducer = (state = cartItemsDefault, action) => {
+
   switch (action.type) {
+
     case 'ADD_ITEM':
-      const json = localStorage.getItem('cartItems');
-      const cartItems = JSON.parse(json);
+      const cartItems = JSON.parse(localStorage.getItem('cartItems'));
 
       // Nếu giỏ hàng tồn tại
       if (cartItems) {
@@ -23,11 +24,11 @@ const cartReducer = (state = cartItemsDefault, action) => {
           localStorage.setItem('cartItems', json)
 
           return cartItems;
-          
+
         } else {
           const newCartItems = [
-            ...cartItems, 
-            {...action.item, quantity: action.quantity}
+            ...cartItems,
+            { ...action.item, quantity: action.quantity }
           ];
           const json = JSON.stringify(newCartItems);
           localStorage.setItem('cartItems', json)
@@ -45,15 +46,24 @@ const cartReducer = (state = cartItemsDefault, action) => {
       }
 
     case 'REMOVE_ITEM':
-      const { id } = action.item;
-      const json1 = localStorage.getItem('cartItems');
-      const cartItems1 = JSON.parse(json1);
+      const cartItems1 = JSON.parse(localStorage.getItem('cartItems'));
 
       const newCartItems = cartItems1.filter((item) => {
-        return !(item.id === id);
+        return !(item.id === action.item.id);
       });
       localStorage.setItem('cartItems', JSON.stringify(newCartItems))
       return newCartItems
+
+    case 'CHANGE_ITEM_QUANTITY':
+      const cartItems2 = JSON.parse(localStorage.getItem('cartItems'));
+
+      const existItem = cartItems2.findIndex((item) => {
+        return item.id == action.item.id
+      });
+      cartItems2[existItem].quantity = action.quantity;
+      
+      localStorage.setItem('cartItems', JSON.stringify(cartItems2))
+      return cartItems2
 
     case 'CLEAR_ALL_ITEM':
       localStorage.removeItem('cartItems');
