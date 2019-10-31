@@ -7,8 +7,20 @@ const userDefault = user ? user : { username: '' };
 const userReducer = (state = userDefault, action) => {
     switch (action.type) {
         case 'LOGIN':
-            const user = { ...state, username: action.username }
+            const { username } = action.user;
+
+            const json = JSON.stringify(action.user);
+            localStorage.setItem('user', json);
+
+            const user = { ...state, username }
             return user
+
+        case 'LOG_OUT':
+            localStorage.removeItem('user');
+
+            const curentUser = { ...state, username: '' }
+            return curentUser
+
         default:
             return state
     };

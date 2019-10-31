@@ -1,0 +1,36 @@
+[{
+  "id": 1,
+  "name": "Bitchip",
+  "price": 12578,
+  "description": "Personal history of unspecified digestive disease",
+  "brand": "Casio",
+  "img": "http://dummyimage.com/200x200.jpg/ff4444/ffffff"
+}, {
+  "id": 2,
+  "name": "Flexidy",
+  "price": 19092,
+  "description": "Other erythema multiforme",
+  "brand": "Casio",
+  "img": "http://dummyimage.com/200x200.jpg/ff4444/ffffff"
+}, {
+  "id": 3,
+  "name": "Ventosanzap",
+  "price": 13169,
+  "description": "Herpetic infection of penis",
+  "brand": "Sony",
+  "img": "http://dummyimage.com/200x200.jpg/cc0000/ffffff"
+}, {
+  "id": 4,
+  "name": "Duobam",
+  "price": 13816,
+  "description": "Other specified infestations",
+  "brand": "Sony",
+  "img": "http://dummyimage.com/200x200.jpg/cc0000/ffffff"
+}, {
+  "id": 5,
+  "name": "Alphazap",
+  "price": 16204,
+  "description": "Cyst of bone (localized), unspecified",
+  "brand": "Casio",
+  "img": "http://dummyimage.com/200x200.jpg/ff4444/ffffff"
+}]

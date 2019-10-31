@@ -1,19 +1,50 @@
 import React from 'react';
 import Swal from 'sweetalert2';
+import products from './products.json';
 import { connect } from 'react-redux';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 
 class ProductDetail extends React.Component {
+  constructor(props) {
+    super(props);
 
+    this.state = {
+      product: {
+        id: '',
+        name: ''
+      }
+    }
+
+  }
+
+  // NOTE: Gọi API lấy sản phẩm theo ID
+  componentDidMount() {
+    // FIXME:  Xóa khúc này 
+    let currentProduct = products.find((item) =>{
+      return item.id == this.props.match.params.id
+    });
+    
+    console.log(currentProduct);
+
+    this.setState(() => ({
+      product: currentProduct
+    }));
+  }
+
+  // --- Thêm sản phẩm vài giỏ hàng --- //
   handleAddItemToCart = (e) => {
     e.preventDefault();
     const item = {
+      id: e.target.id.value,
       name: e.target.name.value,
+      price: e.target.price.value,
       quantity: e.target.quantity.value
     };
 
-    this.props.dispatch({type: 'ADD_ITEM', item})
+    // ACTION thêm sản phẩm
+    this.props.dispatch({ type: 'ADD_ITEM', item })
 
+    // --- Sweet alert --- //
     const Toast = Swal.mixin({
       toast: true,
       position: 'top',
@@ -38,13 +69,18 @@ class ProductDetail extends React.Component {
 
             <Col md={4}>
               <div className='product-info-container'>
-                <h2>Gia: 10,000 VND</h2>
+                <h1>{this.state.product.name}</h1>
+                <h2>Gia: {this.state.product.price} VND</h2>
                 <p>Thong tin san pham</p>
 
                 <div>
                   <Form onSubmit={this.handleAddItemToCart}>
                     <Form.Group>
-                      <Form.Control hidden name='name' type='string' value={this.props.match.params.name} />
+                      {/* Để tạo một item mới cho giở hàng */}
+                      <Form.Control hidden name='id' type='string' value={this.state.product.id} />
+                      <Form.Control hidden name='name' type='string' value={this.state.product.name} />
+                      <Form.Control hidden name='price' type='number' value={this.state.product.price} />
+
                       <Row>
                         <Col>
                           <Form.Label column >Số lượng </Form.Label>

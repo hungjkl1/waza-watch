@@ -9,18 +9,35 @@ const cartReducer = (state = cartItemsDefault, action) => {
     case 'ADD_ITEM':
       const json = localStorage.getItem('cartItems');
       const cartItems = JSON.parse(json);
-      // if Cart already exist
+
+      // Nếu giỏ hàng tồn tại
       if (cartItems) {
-        const newCartItems = [...cartItems, action.item];
-        const json = JSON.stringify(newCartItems);
-        localStorage.setItem('cartItems', json)
-        // if cart not exist 
+        const existItem = cartItems.findIndex(({ id }) => {
+          return id == action.item.id
+        })
+
+        // Nếu item đã tồn tại thì tăng quantity
+        if (existItem !== -1) {
+          cartItems[existItem].quantity = Number(cartItems[existItem].quantity) + Number(action.item.quantity);
+          const json = JSON.stringify(cartItems);
+          localStorage.setItem('cartItems', json)
+
+          return cartItems;
+        } else {
+          const newCartItems = [...cartItems, action.item];
+          const json = JSON.stringify(newCartItems);
+          localStorage.setItem('cartItems', json)
+          return newCartItems;
+        }
+
       } else {
+        // Nếu giỏ hàng không tồn tại 
         const newCartItems = [action.item];
         const json = JSON.stringify(newCartItems);
         localStorage.setItem('cartItems', json)
+        return newCartItems;
       }
-      return [...state, action.item];
+
 
     case 'CLEAR_ITEM':
       localStorage.removeItem('cartItems');

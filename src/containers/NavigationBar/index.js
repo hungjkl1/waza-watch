@@ -16,6 +16,11 @@ class NavigationBar extends React.Component {
     };
   };
 
+  // --- Logout --- //
+  handleLogOut = () =>{
+    this.props.dispatch({type: 'LOG_OUT'});
+  };
+
   // ---  Modal control --- //
   handleShowLogin = () => {
     this.setState({ showLogin: true })
@@ -59,15 +64,26 @@ class NavigationBar extends React.Component {
             {/* Left item */}
             <Nav>
               {/* LOGIN AND USER INFOMATION */}
-              {this.props.user.username === '' &&
-                <Nav.Link onClick={this.handleShowLogin}>Đăng nhập</Nav.Link>
+              {this.props.user.username === '' && // IF user not login
+                <Nav.Link onClick={this.handleShowLogin}>
+                  Đăng nhập
+                </Nav.Link>
+              }
+
+              {this.props.user.username !== '' &&
+                <NavDropdown title={'Xin chào ' + this.props.user.username}>
+                  <NavDropdown.Item href="#">Thông tin cá nhân</NavDropdown.Item>
+                  <NavDropdown.Item href="#">Các đơn hàng</NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item className='text-danger' onClick={this.handleLogOut}>Đăng xuất</NavDropdown.Item>
+                </NavDropdown>
               }
 
               {/* SHOPPING CART */}
               <Nav.Link onClick={this.handleShowCart}>Giỏ hàng [{this.props.cartItems.length}]
                     <img
-                  width='22' height='22' className="logo-cart d-inline-block align-top ml-2"
-                  src="https://img.icons8.com/cotton/64/000000/shopping-cart--v2.png" />
+                  width='22' height='22' className="logo-cart d-inline-block align-center ml-1"
+                  src="https://image.flaticon.com/icons/svg/1170/1170678.svg" />
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>
