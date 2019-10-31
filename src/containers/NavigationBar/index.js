@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import LoginModal from '../../components/LoginModal';
-import CartModal from '../../components/CartModal';
 import './styles.scss';
 
 class NavigationBar extends React.Component {
@@ -80,22 +79,18 @@ class NavigationBar extends React.Component {
               }
 
               {/* SHOPPING CART */}
-              <Nav.Link onClick={this.handleShowCart}>Giỏ hàng [{this.props.cartItems.length}]
+              <Link className='nav-link' to='/shoppingcart'>Giỏ hàng [{this.props.cartItems.length}]
                     <img
                   width='22' height='22' className="logo-cart d-inline-block align-center ml-1"
                   src="https://image.flaticon.com/icons/svg/1170/1170678.svg" />
-              </Nav.Link>
+              </Link>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
 
         <LoginModal
           show={this.state.showLogin}
-          hide={this.handleHideLogin} />
-
-        <CartModal
-          show={this.state.showCart}
-          hide={this.handleHideCart} />
+          hide={this.handleHideLogin} />     
       </div >
     );
   }

@@ -34,6 +34,7 @@ class ProductDetail extends React.Component {
   // --- Thêm sản phẩm vài giỏ hàng --- //
   handleAddItemToCart = (e) => {
     e.preventDefault();
+    
     const item = {
       id: e.target.id.value,
       name: e.target.name.value,
