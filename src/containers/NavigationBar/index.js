@@ -79,7 +79,7 @@ class NavigationBar extends React.Component {
               }
 
               {/* SHOPPING CART */}
-              <Link className='nav-link' to='/shoppingcart'>Giỏ hàng [{this.props.cartItems.length}]
+              <Link className='nav-link' to='/shoppingcart'><div className='cart-items-number'>{this.props.cartItems.length}</div>
                     <img
                   width='22' height='22' className="logo-cart d-inline-block align-center ml-1"
                   src="https://image.flaticon.com/icons/svg/1170/1170678.svg" />

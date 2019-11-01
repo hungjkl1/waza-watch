@@ -12,8 +12,8 @@ const cartReducer = (state = cartItemsDefault, action) => {
 
       // Nếu giỏ hàng tồn tại
       if (cartItems) {
-        const existItem = cartItems.findIndex(({ id }) => {
-          return id == action.item.id
+        const existItem = cartItems.findIndex(({ _id }) => {
+          return _id == action.item._id
         })
 
         // Nếu item đã tồn tại thì tăng quantity
@@ -49,7 +49,7 @@ const cartReducer = (state = cartItemsDefault, action) => {
       const cartItems1 = JSON.parse(localStorage.getItem('cartItems'));
 
       const newCartItems = cartItems1.filter((item) => {
-        return !(item.id === action.item.id);
+        return !(item._id === action.item._id);
       });
       localStorage.setItem('cartItems', JSON.stringify(newCartItems))
       return newCartItems
@@ -58,7 +58,7 @@ const cartReducer = (state = cartItemsDefault, action) => {
       const cartItems2 = JSON.parse(localStorage.getItem('cartItems'));
 
       const existItem = cartItems2.findIndex((item) => {
-        return item.id == action.item.id
+        return item._id == action.item._id
       });
       cartItems2[existItem].quantity = action.quantity;
       

@@ -4,10 +4,12 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Container, Row, Col, Table, Button } from 'react-bootstrap';
 import './shoppingcart.scss';
+import API from  '../../core'
 
 class ShoppingCart extends Component {
   constructor(props) {
     super(props);
+    this.service = new API()
     this.state = {}
   }
   getTotalPrice = () => {
@@ -20,12 +22,39 @@ class ShoppingCart extends Component {
   handleRemoveItem = (item) => {
     this.props.dispatch({ type: 'REMOVE_ITEM', item })
   }
+
   renderForm = () => {
     const json = localStorage.getItem('user');
     const user = JSON.parse(json);
 
-    return <Form user={user} />
+    return <Form user={user} handleSubmit={this.handleSubmit} handleOnChange={this.handleOnChange}/>
   }
+
+  handleSubmit = e => {
+    e.preventDefault()
+    let product = []
+    this.props.cartItems.map(item=>{
+      product.push({productId:item._id,price:item.price,quantity:item.quantity})
+    })
+    const nonUser = this.state
+    const bill = {
+      address:this.state.address,
+      billDetail:product,
+      nonUser
+    }
+    this.service.post('bill/createBill',{data:bill}).then(result=>{
+      alert(result)
+    }).catch(err=>{
+      alert(err)
+    })
+  }
+
+  handleOnChange = (e) => {
+    this.setState({
+      [e.target.name]:e.target.value
+    })
+  }
+
   changeQuantity = (item, quantity) => {
     this.props.dispatch({
       type: 'CHANGE_ITEM_QUANTITY',
@@ -63,7 +92,7 @@ class ShoppingCart extends Component {
                   <tbody>
                     {this.props.cartItems.map((item, index) =>
                       <tr key={index}>
-                        <td><img src={item.img} width='30' /></td>
+                        <td><img src={item.productImage} width='50' /></td>
                         <td>{item.name}</td>
                         <td>{item.price} VND</td>
                         <td>

@@ -41,3 +41,18 @@
         text-transform: uppercase;
     }
 }
+.cart-items-number{
+    font-size: 14px;
+    min-width: 20px;
+    min-height: 20px;
+    display: inline-block;
+    text-align: center;
+    margin: auto;
+    border-radius: 100%;
+    background: red;
+    position: absolute;
+    top: 25px;
+    right: 11px;
+    z-index: 1000;
+    color: white
+}

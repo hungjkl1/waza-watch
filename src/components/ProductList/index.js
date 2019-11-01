@@ -50,14 +50,14 @@ class ProductList extends React.Component {
       <div className='productlist-component'>
         <Container>
           <Row>
-            {
-              this.state.products.map((item) => {
+            { this.props.products &&
+              this.props.products.map((item) => {
                 return (
                   <Col xs={6} sm={6} md={3}>
                     {/* Link đến chi tiết sản phẩm */}
-                    <Link to={'/products/' + item.id} className='link-product'>
+                    <Link to={'/products/' + item._id} className='link-product'>
                       <div className='product-container'>
-                        <img className='product-container__image' src={item.img} alt={item.name} />
+                        <img className='product-container__image' src={item.productImage} alt={item.name} />
                         <p>{item.name}</p>
                         <p>{formatNumber(item.price)} VND</p>
                       </div>
