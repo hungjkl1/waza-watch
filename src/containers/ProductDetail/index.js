@@ -16,6 +16,10 @@ class ProductDetail extends React.Component {
       quantity: 1
     };
   }
+  
+  formatNumber = (num) => {
+    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+  }
 
   // NOTE: Gọi API lấy sản phẩm theo ID
   componentDidMount() {
@@ -80,8 +84,8 @@ class ProductDetail extends React.Component {
               <Col md={4}>
                 <div className="product-info-container">
                   <h1>{this.state.product.name}</h1>
-                  <h3>Gía: {this.state.product.price} VND</h3>
-                  <hr></hr>
+                  <h3>Giá: {this.formatNumber(this.state.product.price)} VND</h3>
+                  <hr />
                   <h4>Thông tin sản phẩm:</h4>
                   <ul>
                     <li>Hãng Đồng Hồ: {this.state.product.brand.name}</li>
