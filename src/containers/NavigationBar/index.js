@@ -63,14 +63,14 @@ class NavigationBar extends React.Component {
             {/* Left item */}
             <Nav>
               {/* LOGIN AND USER INFOMATION */}
-              {this.props.user.username === '' && // IF user not login
+              {this.props.user.userName === '' && // IF user not login
                 <Nav.Link onClick={this.handleShowLogin}>
                   Đăng nhập
                 </Nav.Link>
               }
 
-              {this.props.user.username !== '' &&
-                <NavDropdown title={'Xin chào ' + this.props.user.username}>
+              {this.props.user.userName !== '' &&
+                <NavDropdown title={'Xin chào ' + this.props.user.userName}>
                   <NavDropdown.Item href="#">Thông tin cá nhân</NavDropdown.Item>
                   <NavDropdown.Item href="#">Các đơn hàng</NavDropdown.Item>
                   <NavDropdown.Divider />

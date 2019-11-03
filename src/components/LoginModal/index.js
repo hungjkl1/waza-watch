@@ -1,6 +1,7 @@
 import React from 'react';
-import { Modal, Button, Form } from 'react-bootstrap';
+import { Modal, Button, Form, Container, Row, Col } from 'react-bootstrap';
 import { connect } from 'react-redux';
+import LoginForm from './LoginForm';
 
 class LoginModal extends React.Component {
   constructor(props) {
@@ -10,18 +11,6 @@ class LoginModal extends React.Component {
       SigninForm: false
     };
   };
-
-  handleLogin = (e) => {
-    e.preventDefault();
-    console.log('LOGIN');
-
-    const user = {
-      username: e.target.username.value
-    };
-
-    this.props.dispatch({ type: 'LOGIN', user})
-  };
-
 
   // --- Đổi mục đăng kí/đăng nhập --- //
   handleShowSignin = () => {
@@ -41,34 +30,9 @@ class LoginModal extends React.Component {
   render() {
     return (
       <Modal show={this.props.show} onHide={this.props.hide} >
-
         {/* Khung đăng nhập */}
         {this.state.loginForm &&
-          <div>
-            <Modal.Header>
-              Đăng nhập
-            </Modal.Header>
-
-            <Modal.Body>
-              <Form onSubmit={this.handleLogin}>
-
-                <Form.Group>
-                  <Form.Label>Tên tài khoản</Form.Label>
-                  <Form.Control type="string" name='username' placeholder="Tên tài khoản" />
-                </Form.Group>
-
-                <Form.Group>
-                  <Form.Label>Mật khẩu</Form.Label>
-                  <Form.Control type="password" placeholder="Mật khẩu" />
-                </Form.Group>
-
-                <Button type='submit' variant="secondary" onClick={this.props.hide}>
-                  Đăng nhập
-                </Button>
-
-              </Form>
-            </Modal.Body>
-          </div>
+          <LoginForm />
         }
 
         {/* Khung đăng kí */}
@@ -76,7 +40,7 @@ class LoginModal extends React.Component {
           <div>
             <Modal.Header>
               Đăng kí
-          </Modal.Header>
+            </Modal.Header>
             <Modal.Body>
               <Form>
                 <Form.Group>
@@ -101,14 +65,6 @@ class LoginModal extends React.Component {
           </div>
         }
 
-        {/* Chọn hiện khung đăng nhâp hay đăng kí */}
-        {this.state.loginForm &&
-          <Modal.Footer>
-            <div>
-              <a onClick={this.handleShowSignin}>Chưa là thành viên ?</a>
-            </div>
-          </Modal.Footer>
-        }
         {this.state.SigninForm &&
           <Modal.Footer>
             <div>

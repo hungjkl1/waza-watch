@@ -34,7 +34,6 @@ class ProductDetail extends React.Component {
       .catch(err => {
         alert(err);
       });
-    // FIXME:  Xóa khúc này
   }
 
   handleChange = e => {

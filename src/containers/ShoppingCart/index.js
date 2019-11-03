@@ -37,9 +37,7 @@ class ShoppingCart extends Component {
 
   handleSubmit = e => {
     e.preventDefault()
-
     
-
     // --- Gửi data lên server --- //
     let product = []
     this.props.cartItems.map(item => {
