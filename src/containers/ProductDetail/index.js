@@ -1,11 +1,12 @@
 import React from "react";
 import Swal from "sweetalert2";
-import products from "./products.json";
 import { connect } from "react-redux";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import "./productdetail.scss";
 import API from "../../core";
 import _ from "lodash";
+// Components
+import ProductRating from '../../components/ProductRating';
 
 class ProductDetail extends React.Component {
   constructor(props) {
@@ -120,6 +121,9 @@ class ProductDetail extends React.Component {
                 </div>
               </Col>
             </Row>
+            
+            {/* Phần đánh giá sản phẩm */}
+            <ProductRating product={this.state.product}/>
           </Container>
         )}
       </div>

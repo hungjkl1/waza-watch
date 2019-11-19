@@ -56,12 +56,10 @@ const cartReducer = (state = cartItemsDefault, action) => {
 
     case 'CHANGE_ITEM_QUANTITY':
       const cartItems2 = JSON.parse(localStorage.getItem('cartItems'));
-
       const existItem = cartItems2.findIndex((item) => {
         return item._id == action.item._id
       });
       cartItems2[existItem].quantity = action.quantity;
-      
       localStorage.setItem('cartItems', JSON.stringify(cartItems2))
       return cartItems2
 

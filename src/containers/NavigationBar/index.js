@@ -10,8 +10,7 @@ class NavigationBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showLogin: false,
-      showCart: false,
+      showAuthModal: false,
     };
   };
 
@@ -21,20 +20,12 @@ class NavigationBar extends React.Component {
   };
 
   // ---  Modal control --- //
-  handleShowLogin = () => {
-    this.setState({ showLogin: true })
+  hanđleShowAuthModal = () => {
+    this.setState({ showAuthModal: true })
   };
-  handleHideLogin = () => {
-    this.setState({ showLogin: false })
+  handleHideAuthModal = () => {
+    this.setState({ showAuthModal: false })
   };
-
-  handleShowCart = () => {
-    this.setState({ showCart: true })
-  };
-  handleHideCart = () => {
-    this.setState({ showCart: false })
-  };
-
   render() {
     return (
       <div>
@@ -64,7 +55,7 @@ class NavigationBar extends React.Component {
             <Nav>
               {/* LOGIN AND USER INFOMATION */}
               {this.props.user.userName === '' && // IF user not login
-                <Nav.Link onClick={this.handleShowLogin}>
+                <Nav.Link onClick={this.hanđleShowAuthModal}>
                   Đăng nhập
                 </Nav.Link>
               }
@@ -89,8 +80,8 @@ class NavigationBar extends React.Component {
         </Navbar>
 
         <LoginModal
-          show={this.state.showLogin}
-          hide={this.handleHideLogin} />     
+          show={this.state.showAuthModal}
+          hide={this.handleHideAuthModal} />     
       </div >
     );
   }

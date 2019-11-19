@@ -25,6 +25,7 @@ class LoginForm extends React.Component {
         if (result.data.result) {
           this.props.dispatch({type: 'LOGIN', user: result.data.result })
           this.setState({ error: false })
+          this.props.hide();
         } else {
           this.setState({ error: true })
         }
@@ -46,6 +47,7 @@ class LoginForm extends React.Component {
 
         <Modal.Body>
           {this.state.error && <Alert variant='danger'>Sai mặt khẩu hoặc tài khoản</Alert>}
+
           <Form>
             <Form.Group>
               <Form.Control type="string" name='userName' placeholder="Tên tài khoản"
@@ -63,18 +65,6 @@ class LoginForm extends React.Component {
             </Button>
           </Form>
         </Modal.Body>
-
-        <Modal.Footer>
-          <Container>
-            <Row>
-              <Col>
-                <div align='center'>
-                  <a href='#'>Chưa là thành viên ?</a>
-                </div>
-              </Col>
-            </Row>
-          </Container>
-        </Modal.Footer>
       </div>
     );
   };
