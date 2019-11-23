@@ -7,6 +7,7 @@ import API from "../../core";
 import _ from "lodash";
 // Components
 import ProductRating from '../../components/ProductRating';
+import ListProductRating from '../../components/ListProductRating';
 
 class ProductDetail extends React.Component {
   constructor(props) {
@@ -14,17 +15,18 @@ class ProductDetail extends React.Component {
     this.service = new API();
     this.state = {
       product: {},
-      quantity: 1
+      quantity: 1,
+      ratings: []
     };
   }
-  
+
   formatNumber = (num) => {
     return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
   }
 
   // NOTE: Gọi API lấy sản phẩm theo ID
   componentDidMount() {
-    console.log(this.props.match.params.id);
+    // Lấy thông tin sản phẩm 
     this.service
       .post("product/getProduct", { id: this.props.match.params.id })
       .then(result => {
@@ -32,9 +34,27 @@ class ProductDetail extends React.Component {
           product: result.data.result
         });
       })
-      .catch(err => {
-        alert(err);
-      });
+      .catch(err => { alert(err); });
+    // Lấy danh sách bình luận sản phẩm
+    this.service
+      .post("rating/getRating", { id: this.props.match.params.id })
+      .then((result) => {
+        console.log(result)
+        this.setState({
+          ratings: result
+        })
+      })
+  }
+  // Cập nhật danh sách bình luận khi có bình luận mới 
+  componentDidUpdate() {
+    this.service
+      .post("rating/getRating", { id: this.props.match.params.id })
+      .then((result) => {
+        console.log(result)
+        this.setState({
+          ratings: result
+        })
+      })
   }
 
   handleChange = e => {
@@ -121,9 +141,11 @@ class ProductDetail extends React.Component {
                 </div>
               </Col>
             </Row>
-            
-            {/* Phần đánh giá sản phẩm */}
-            <ProductRating product={this.state.product}/>
+
+            {/* Phần Form đánh giá sản phẩm */}
+            <ProductRating product={this.state.product} />
+            {/* Danh sách đánh giá sản phẩm */}
+            <ListProductRating ratings={this.state.ratings} />
           </Container>
         )}
       </div>

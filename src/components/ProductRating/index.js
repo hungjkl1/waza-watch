@@ -2,15 +2,15 @@ import React from 'react';
 import './productRating.scss';
 import { Row, Col, Form, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
+import axios from 'axios';
 class ProductRating extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      score: 1,
+      score: 3,
       conent: ''
     };
   };
-
   handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value
@@ -18,13 +18,16 @@ class ProductRating extends React.Component {
   };
   handleSubmit = (e) => {
     e.preventDefault();
-    const rating = {
+    const data = {
       score: this.state.score,
       content: this.state.content,
       product: this.props.product._id,
       user: this.props.user._id
     };
-    console.log(rating);
+    axios.post('http://localhost:7777/api/rating/createRating', data)
+      .then((result) => {
+        console.log(result)
+      })
   };
 
   render() {
@@ -42,16 +45,16 @@ class ProductRating extends React.Component {
                     <Form.Group>
                       <Form.Control as="select" name='score'
                         value={this.state.score} onChange={this.handleChange}>
-                        <option value={1}>1</option>
-                        <option value={2}>2</option>
-                        <option value={3}>3</option>
-                        <option value={4}>4</option>
-                        <option value={5}>5</option>
+                        <option value={1}>Rất tệ</option>
+                        <option value={2}>Tệ</option>
+                        <option value={3}>Bình thường</option>
+                        <option value={4}>Tốt</option>
+                        <option value={5}>Rất tốt</option>
                       </Form.Control>
                     </Form.Group>
 
                     <Form.Group>
-                      <Form.Control as="textarea" rows="3" name='content'
+                      <Form.Control as="textarea" rows="3" name='content' placeholder='Hãy chia sẻ suy nghĩa của bạn về sản phẩm ...'
                         value={this.state.content} onChange={this.handleChange} />
                     </Form.Group>
                   </div>
@@ -64,13 +67,6 @@ class ProductRating extends React.Component {
                 </Col>
               </Row>
             </Form>
-          </Col>
-        </Row>
-
-        <Row>
-          <Col>
-            <hr />
-            <h4 align='left'>Những bài đánh giá</h4>
           </Col>
         </Row>
       </React.Fragment>

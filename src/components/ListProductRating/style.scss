@@ -1,0 +1,16 @@
+.rating-comment-container {
+  text-align: left;
+  padding: 10px;
+  margin-bottom: 1rem;;
+  border: 1px solid lightgray;
+
+  .user-score-container {
+    display: flex;
+    border-bottom: 1px solid lightgray;
+
+    .user-comment {
+      margin-right: 20px;
+    }
+  }
+
+}
