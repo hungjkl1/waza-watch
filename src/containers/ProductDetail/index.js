@@ -1,6 +1,5 @@
 import React from "react";
 import Swal from "sweetalert2";
-import products from "./products.json";
 import { connect } from "react-redux";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import "./productdetail.scss";
@@ -124,4 +123,10 @@ class ProductDetail extends React.Component {
   }
 }
 
-export default connect(null, null)(ProductDetail);
+const mapStateToProps = (state) => {
+  return{
+    ratings: state.ratings
+  }
+}
+
+export default connect(mapStateToProps, null)(ProductDetail);
