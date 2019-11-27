@@ -11,7 +11,9 @@ class ShoppingCart extends Component {
   constructor(props) {
     super(props);
     this.service = new API()
-    this.state = {}
+    this.state = {
+      detail: null
+    }
   }
   formatNumber = (num) => {
     return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
@@ -27,12 +29,16 @@ class ShoppingCart extends Component {
   handleRemoveItem = (item) => {
     this.props.dispatch({ type: 'REMOVE_ITEM', item })
   }
-
+  getPaypalDetail = (detail) => {
+    this.setState({
+      detail
+    })
+  }
   renderForm = () => {
     const json = localStorage.getItem('user');
     const user = JSON.parse(json);
 
-    return <Form user={user} handleSubmit={this.handleSubmit} handleOnChange={this.handleOnChange} />
+    return <Form user={user} getPaypalDetail={this.getPaypalDetail} handleSubmit={this.handleSubmit} handleOnChange={this.handleOnChange} />
   }
 
   handleSubmit = e => {
@@ -43,24 +49,26 @@ class ShoppingCart extends Component {
     this.props.cartItems.map(item => {
       product.push({ productId: item._id, price: item.price, quantity: item.quantity })
     })
-    const nonUser = this.state
-    const bill = {
-      address: this.state.address,
-      billDetail: product,
-      nonUser
+    if(!this.props.user) {
+      const nonUser = this.state
+      const bill = {
+        address: this.state.address,
+        billDetail: product,
+        nonUser
+      }
+      this.service.post('bill/createBill', { data: bill }).then(result => {
+        Swal.fire({
+          toast: true,
+          position: "top",
+          showConfirmButton: false,
+          timer: 1500,
+          type: "success",
+          title: "Thanh toán thành công"
+        });
+      }).catch(err => {
+        alert(err)
+      })
     }
-    this.service.post('bill/createBill', { data: bill }).then(result => {
-      Swal.fire({
-        toast: true,
-        position: "top",
-        showConfirmButton: false,
-        timer: 1500,
-        type: "success",
-        title: "Thanh toán thành công"
-      });
-    }).catch(err => {
-      alert(err)
-    })
   }
 
   handleOnChange = (e) => {
@@ -81,11 +89,13 @@ class ShoppingCart extends Component {
         <Container>
 
           {this.props.cartItems.length === 0 &&
+            <div className='no-cart'>
             <div>
-              <p align='center'>Bạn chưa có sản phẩm nào</p>
-              <p align='center'>
-                Hãy đến trang <Link to='/products'>sản phẩm</Link> để chọn lựa sản phẩm nhé !
-              </p>
+            <div>Bạn chưa có sản phẩm nào</div>
+            <div>
+              Hãy đến trang <Link to='/products'>sản phẩm</Link> để chọn lựa sản phẩm nhé !
+            </div>
+            </div>
             </div>
           }
 
@@ -137,7 +147,7 @@ class ShoppingCart extends Component {
             </Row>
           }
         </Container>
-      </div >
+      </div>
     );
   };
 };

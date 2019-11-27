@@ -1,5 +1,6 @@
 import React from 'react';
 import { Form, Button, Row, Col } from 'react-bootstrap';
+import { PayPalButton } from "react-paypal-button-v2";
 
 class FormDelivery extends React.Component {
   constructor(props) {
@@ -25,7 +26,17 @@ class FormDelivery extends React.Component {
               <Form.Label>Mã giảm giá</Form.Label>
               <Form.Control type="string" />
             </Form.Group>
-            <Button className='btn-secondary' variant="primary" type="submit">Thanh toán</Button>
+            <Button className='btn-primary btn-block mt-3' variant="primary" type="submit">Thanh toán tiền mặt</Button>
+            <PayPalButton
+            amount="0.01"
+            // shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
+            onSuccess={(details, data) => {
+              this.props.getPaypalDetail(details)
+            }}
+            options={{
+              clientId: "PRODUCTION_CLIENT_ID"
+            }}
+          />
           </Form>
         }
 
@@ -59,6 +70,16 @@ class FormDelivery extends React.Component {
             </Form.Group>
             
             <Button className='btn-secondary' variant="primary" type="submit">Thanh toán</Button>
+            <PayPalButton
+              amount="0.01"
+              // shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
+              onSuccess={(details, data) => {
+                this.props.getPaypalDetail(details)
+              }}
+              options={{
+                clientId: "PRODUCTION_CLIENT_ID"
+              }}
+            />
           </Form>
         }
       </div>

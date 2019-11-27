@@ -5,3 +5,15 @@
         padding: 15px;
     }
 }
+.no-cart {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    min-height: calc(100vh - 80px);
+    >*{
+        width: 100%;
+        >*{
+            width: 100%;
+        }
+    }
+}
