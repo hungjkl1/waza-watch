@@ -124,7 +124,4 @@ class ProductDetail extends React.Component {
   }
 }
 
-export default connect(
-  null,
-  null
-)(ProductDetail);
+export default connect(null, null)(ProductDetail);
