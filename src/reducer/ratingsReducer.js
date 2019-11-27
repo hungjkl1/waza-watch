@@ -6,6 +6,10 @@ const ratingReducer = (state = initalState, action) => {
       const ratings = action.ratings;
       return ratings
 
+    case 'UPDTAE_RATINGS':
+      const newRatings = action.ratings;
+      return newRatings
+
     default:
       return state
   }

@@ -16,11 +16,7 @@ class Products extends React.Component {
       brands:[]
     }
   };
-
-  sortByBrand = () => {
-
-  };
-
+  
   componentDidMount(){
     this.service.post('product/products').then(result=>{
       this.service.post('brand/brands').then(brands=>{

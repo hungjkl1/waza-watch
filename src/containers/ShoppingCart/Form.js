@@ -1,10 +1,10 @@
 import React from 'react';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Row, Col } from 'react-bootstrap';
 
 class FormDelivery extends React.Component {
   constructor(props) {
     super(props);
-    this.state={}
+    this.state = {}
   }
 
   render() {
@@ -12,13 +12,18 @@ class FormDelivery extends React.Component {
     return (
       <div>
         <hr />
-        
+
         {/* Khi người dùng đã đăng nhập */}
         {this.props.user &&
           <Form onSubmit={this.props.handleSubmit}>
             <Form.Group>
               <Form.Label>Địa chỉ giao hàng</Form.Label>
               <Form.Control onChange={this.props.handleOnChange} name='address' type="string" />
+            </Form.Group>
+            <hr />
+            <Form.Group>
+              <Form.Label>Mã giảm giá</Form.Label>
+              <Form.Control type="string" />
             </Form.Group>
             <Button className='btn-secondary' variant="primary" type="submit">Thanh toán</Button>
           </Form>
@@ -46,6 +51,13 @@ class FormDelivery extends React.Component {
               <Form.Label>Email</Form.Label>
               <Form.Control onChange={this.props.handleOnChange} name='email' type="email" />
             </Form.Group>
+
+            <hr />
+            <Form.Group>
+              <Form.Label>Mã giảm giá</Form.Label>
+              <Form.Control type="string" />
+            </Form.Group>
+            
             <Button className='btn-secondary' variant="primary" type="submit">Thanh toán</Button>
           </Form>
         }

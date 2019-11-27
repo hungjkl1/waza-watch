@@ -10,31 +10,22 @@ class NavigationBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showLogin: false,
-      showCart: false,
+      showAuthModal: false,
     };
   };
 
   // --- Logout --- //
-  handleLogOut = () =>{
-    this.props.dispatch({type: 'LOG_OUT'});
+  handleLogOut = () => {
+    this.props.dispatch({ type: 'LOG_OUT' });
   };
 
   // ---  Modal control --- //
-  handleShowLogin = () => {
-    this.setState({ showLogin: true })
+  hanđleShowAuthModal = () => {
+    this.setState({ showAuthModal: true })
   };
-  handleHideLogin = () => {
-    this.setState({ showLogin: false })
+  handleHideAuthModal = () => {
+    this.setState({ showAuthModal: false })
   };
-
-  handleShowCart = () => {
-    this.setState({ showCart: true })
-  };
-  handleHideCart = () => {
-    this.setState({ showCart: false })
-  };
-
   render() {
     return (
       <div>
@@ -63,16 +54,14 @@ class NavigationBar extends React.Component {
             {/* Left item */}
             <Nav>
               {/* LOGIN AND USER INFOMATION */}
-              {this.props.user.username === '' && // IF user not login
-                <Nav.Link onClick={this.handleShowLogin}>
-                  Đăng nhập
-                </Nav.Link>
+              {!this.props.user && 
+                <Nav.Link onClick={this.hanđleShowAuthModal}>Đăng nhập</Nav.Link>
               }
 
-              {this.props.user.username !== '' &&
-                <NavDropdown title={'Xin chào ' + this.props.user.username}>
+              {this.props.user &&
+                <NavDropdown title={'Xin chào ' + this.props.user.userName}>
                   <NavDropdown.Item href="#">Thông tin cá nhân</NavDropdown.Item>
-                  <NavDropdown.Item href="#">Các đơn hàng</NavDropdown.Item>
+                  <NavDropdown.Item href="#">Lịch sử đơn hàng</NavDropdown.Item>
                   <NavDropdown.Divider />
                   <NavDropdown.Item className='text-danger' onClick={this.handleLogOut}>Đăng xuất</NavDropdown.Item>
                 </NavDropdown>
@@ -80,7 +69,7 @@ class NavigationBar extends React.Component {
 
               {/* SHOPPING CART */}
               <Link className='nav-link' to='/shoppingcart'><div className='cart-items-number'>{this.props.cartItems.length}</div>
-                    <img
+                <img
                   width='22' height='22' className="logo-cart d-inline-block align-center ml-1"
                   src="https://image.flaticon.com/icons/svg/1170/1170678.svg" />
               </Link>
@@ -89,8 +78,8 @@ class NavigationBar extends React.Component {
         </Navbar>
 
         <LoginModal
-          show={this.state.showLogin}
-          hide={this.handleHideLogin} />     
+          show={this.state.showAuthModal}
+          hide={this.handleHideAuthModal} />
       </div >
     );
   }

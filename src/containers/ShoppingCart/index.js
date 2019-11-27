@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import Form from './Form';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import { Container, Row, Col, Table, Button } from 'react-bootstrap';
 import './shoppingcart.scss';
-import API from  '../../core'
+import API from '../../core'
 
 class ShoppingCart extends Component {
   constructor(props) {
@@ -12,6 +13,10 @@ class ShoppingCart extends Component {
     this.service = new API()
     this.state = {}
   }
+  formatNumber = (num) => {
+    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+  }
+
   getTotalPrice = () => {
     let totalPrice = 0;
     this.props.cartItems.map((item, index) => {
@@ -27,31 +32,40 @@ class ShoppingCart extends Component {
     const json = localStorage.getItem('user');
     const user = JSON.parse(json);
 
-    return <Form user={user} handleSubmit={this.handleSubmit} handleOnChange={this.handleOnChange}/>
+    return <Form user={user} handleSubmit={this.handleSubmit} handleOnChange={this.handleOnChange} />
   }
 
   handleSubmit = e => {
     e.preventDefault()
+    
+    // --- Gửi data lên server --- //
     let product = []
-    this.props.cartItems.map(item=>{
-      product.push({productId:item._id,price:item.price,quantity:item.quantity})
+    this.props.cartItems.map(item => {
+      product.push({ productId: item._id, price: item.price, quantity: item.quantity })
     })
     const nonUser = this.state
     const bill = {
-      address:this.state.address,
-      billDetail:product,
+      address: this.state.address,
+      billDetail: product,
       nonUser
     }
-    this.service.post('bill/createBill',{data:bill}).then(result=>{
-      alert(result)
-    }).catch(err=>{
+    this.service.post('bill/createBill', { data: bill }).then(result => {
+      Swal.fire({
+        toast: true,
+        position: "top",
+        showConfirmButton: false,
+        timer: 1500,
+        type: "success",
+        title: "Thanh toán thành công"
+      });
+    }).catch(err => {
       alert(err)
     })
   }
 
   handleOnChange = (e) => {
     this.setState({
-      [e.target.name]:e.target.value
+      [e.target.name]: e.target.value
     })
   }
 
@@ -94,7 +108,7 @@ class ShoppingCart extends Component {
                       <tr key={index}>
                         <td><img src={item.productImage} width='50' /></td>
                         <td>{item.name}</td>
-                        <td>{item.price} VND</td>
+                        <td>{this.formatNumber(item.price)} VND</td>
                         <td>
                           <div>
                             <Button className='mr-2' variant="secondary" size='sm'
@@ -104,7 +118,7 @@ class ShoppingCart extends Component {
                               onClick={() => this.changeQuantity(item, item.quantity + 1)}> + </Button>
                           </div>
                         </td>
-                        <td>{item.quantity * item.price} VND</td>
+                        <td>{this.formatNumber(item.quantity * item.price)} VND</td>
                         <td><Button variant="danger" size='sm' onClick={() => this.handleRemoveItem(item)}>X</Button></td>
                       </tr>)}
                   </tbody>
@@ -113,9 +127,11 @@ class ShoppingCart extends Component {
               <Col>
                 <div className='total-price'>
                   <h2>Tổng số tiền</h2>
-                  <h4>{this.getTotalPrice()} VND</h4>
+                  <h4>{this.formatNumber(this.getTotalPrice())}  VND</h4>
 
                   {this.renderForm()}
+
+
                 </div>
               </Col>
             </Row>

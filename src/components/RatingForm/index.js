@@ -3,6 +3,9 @@ import './productRating.scss';
 import { Row, Col, Form, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import axios from 'axios';
+// thunk
+import { getRatings } from '../../containers/ProductDetail/thunk';
+
 class ProductRating extends React.Component {
   constructor(props) {
     super(props);
@@ -16,19 +19,23 @@ class ProductRating extends React.Component {
       [e.target.name]: e.target.value
     })
   };
-  
+
   handleSubmit = (e) => {
     e.preventDefault();
     const data = {
       score: this.state.score,
       content: this.state.content,
       product: this.props.product._id,
-      user: this.props.user._id
+      user: this.props.user ? this.props.user._id : null
     };
     axios.post('http://localhost:7777/api/rating/createRating', data)
       .then((result) => {
-        console.log(result)
+        this.props.dispatch(getRatings(this.props.product._id))
       })
+    this.setState({
+      content: '',
+      score: 3
+    })
   };
 
   render() {
@@ -68,7 +75,6 @@ class ProductRating extends React.Component {
                 </Col>
               </Row>
             </Form>
-
           </Col>
         </Row>
       </React.Fragment>

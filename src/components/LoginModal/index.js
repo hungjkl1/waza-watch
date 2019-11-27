@@ -1,129 +1,54 @@
 import React from 'react';
-import { Modal, Button, Form } from 'react-bootstrap';
+import { Modal, Button, Form, Container, Row, Col } from 'react-bootstrap';
 import { connect } from 'react-redux';
+import LoginForm from './LoginForm';
+import SignUpForm from './SignUpForm';
 
 class LoginModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loginForm: true,
-      SigninForm: false
+      showingState: 'LOGIN'
     };
   };
-
-  handleLogin = (e) => {
-    e.preventDefault();
-    console.log('LOGIN');
-
-    const user = {
-      username: e.target.username.value
-    };
-
-    this.props.dispatch({ type: 'LOGIN', user})
-  };
-
 
   // --- Đổi mục đăng kí/đăng nhập --- //
-  handleShowSignin = () => {
-    this.setState({
-      loginForm: false,
-      SigninForm: true
-    });
-  };
-
-  handleShowLogin = () => {
-    this.setState({
-      loginForm: true,
-      SigninForm: false
-    });
+  handleChangeShowingState = () => {
+    if (this.state.showingState === 'LOGIN') {
+      this.setState({ showingState: 'SIGN_UP' });
+    } else {
+      this.setState({ showingState: 'LOGIN' })
+    };
   };
 
   render() {
     return (
       <Modal show={this.props.show} onHide={this.props.hide} >
-
         {/* Khung đăng nhập */}
-        {this.state.loginForm &&
-          <div>
-            <Modal.Header>
-              Đăng nhập
-            </Modal.Header>
-
-            <Modal.Body>
-              <Form onSubmit={this.handleLogin}>
-
-                <Form.Group>
-                  <Form.Label>Tên tài khoản</Form.Label>
-                  <Form.Control type="string" name='username' placeholder="Tên tài khoản" />
-                </Form.Group>
-
-                <Form.Group>
-                  <Form.Label>Mật khẩu</Form.Label>
-                  <Form.Control type="password" placeholder="Mật khẩu" />
-                </Form.Group>
-
-                <Button type='submit' variant="secondary" onClick={this.props.hide}>
-                  Đăng nhập
-                </Button>
-
-              </Form>
-            </Modal.Body>
-          </div>
+        {this.state.showingState === 'LOGIN' &&
+          <LoginForm hide={this.props.hide} />
         }
 
         {/* Khung đăng kí */}
-        {this.state.SigninForm &&
-          <div>
-            <Modal.Header>
-              Đăng kí
-          </Modal.Header>
-            <Modal.Body>
-              <Form>
-                <Form.Group>
-                  <Form.Label>Tên tài khoản</Form.Label>
-                  <Form.Control type="text" placeholder="User name" />
-                </Form.Group>
-
-                <Form.Group>
-                  <Form.Label>Email</Form.Label>
-                  <Form.Control type="email" placeholder="Enter email" />
-                </Form.Group>
-
-                <Form.Group>
-                  <Form.Label>Mật khẩu</Form.Label>
-                  <Form.Control type="password" placeholder="Password" />
-                </Form.Group>
-
-                <Button variant="secondary" onClick={this.props.hide} >Đăng kí</Button>
-
-              </Form>
-            </Modal.Body>
-          </div>
+        {this.state.showingState === 'SIGN_UP' &&
+          <SignUpForm hide={this.props.hide} />
         }
 
-        {/* Chọn hiện khung đăng nhâp hay đăng kí */}
-        {this.state.loginForm &&
-          <Modal.Footer>
-            <div>
-              <a onClick={this.handleShowSignin}>Chưa là thành viên ?</a>
-            </div>
-          </Modal.Footer>
-        }
-        {this.state.SigninForm &&
-          <Modal.Footer>
-            <div>
-              <a onClick={this.handleShowLogin}>Đã là thành viên ?</a>
-            </div>
-          </Modal.Footer>
-        }
+        <Modal.Footer>
+          <Container>
+            <Row>
+              <Col>
+                <div align='center'>
+                  {this.state.showingState === 'LOGIN' && <a href='#' onClick={this.handleChangeShowingState}>Chưa là thành viên ?</a>}
+                  {this.state.showingState === 'SIGN_UP' && <a href='#' onClick={this.handleChangeShowingState}>Quay lại đăng nhập</a>}
+                </div>
+              </Col>
+            </Row>
+          </Container>
+        </Modal.Footer>
 
       </Modal>
-    )
-  }
-}
-const mapStateToProps = (state) => {
-  return {
-    user: state.user
+    );
   };
 };
 

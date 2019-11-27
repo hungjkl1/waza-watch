@@ -1,25 +1,17 @@
-const json = localStorage.getItem('user');
-const user = JSON.parse(json);
+const user = JSON.parse(localStorage.getItem('user'));
+console.log('USER',user)
 
 // If user exist or not in local storage
-const userDefault = user ? user : { username: '' };
-
-const userReducer = (state = userDefault, action) => {
+const initalState = user ? user : null;
+const userReducer = (state = initalState, action) => {
     switch (action.type) {
         case 'LOGIN':
-            const { username } = action.user;
-
-            const json = JSON.stringify(action.user);
-            localStorage.setItem('user', json);
-
-            const user = { ...state, username }
-            return user
+            localStorage.setItem('user', JSON.stringify(action.user));
+            return action.user
 
         case 'LOG_OUT':
             localStorage.removeItem('user');
-
-            const curentUser = { ...state, username: '' }
-            return curentUser
+            return null
 
         default:
             return state

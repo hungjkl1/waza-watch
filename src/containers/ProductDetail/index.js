@@ -5,6 +5,11 @@ import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import "./productdetail.scss";
 import API from "../../core";
 import _ from "lodash";
+// Components
+import ProductRating from '../../components/RatingForm';
+import ListProductRating from '../../components/ListProductRating';
+// Thunk
+import { getRatings } from './thunk';
 
 class ProductDetail extends React.Component {
   constructor(props) {
@@ -12,13 +17,18 @@ class ProductDetail extends React.Component {
     this.service = new API();
     this.state = {
       product: {},
-      quantity: 1
+      quantity: 1,
+      ratings: []
     };
+  }
+
+  formatNumber = (num) => {
+    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
   }
 
   // NOTE: Gọi API lấy sản phẩm theo ID
   componentDidMount() {
-    console.log(this.props.match.params.id);
+    // Lấy thông tin sản phẩm 
     this.service
       .post("product/getProduct", { id: this.props.match.params.id })
       .then(result => {
@@ -26,11 +36,11 @@ class ProductDetail extends React.Component {
           product: result.data.result
         });
       })
-      .catch(err => {
-        alert(err);
-      });
-    // FIXME:  Xóa khúc này
+      .catch(err => { alert(err); });
+    // Lấy danh sách Ratings
+    this.props.dispatch(getRatings(this.props.match.params.id));
   }
+  
 
   handleChange = e => {
     this.setState({ quantity: e.target.value });
@@ -62,7 +72,6 @@ class ProductDetail extends React.Component {
   };
 
   render() {
-    console.log(this.state.product);
     return (
       <div>
         {!_.isEmpty(this.state.product) && (
@@ -79,8 +88,8 @@ class ProductDetail extends React.Component {
               <Col md={4}>
                 <div className="product-info-container">
                   <h1>{this.state.product.name}</h1>
-                  <h3>Gía: {this.state.product.price} VND</h3>
-                  <hr></hr>
+                  <h3>Giá: {this.formatNumber(this.state.product.price)} VND</h3>
+                  <hr />
                   <h4>Thông tin sản phẩm:</h4>
                   <ul>
                     <li>Hãng Đồng Hồ: {this.state.product.brand.name}</li>
@@ -116,6 +125,12 @@ class ProductDetail extends React.Component {
                 </div>
               </Col>
             </Row>
+
+            {/* Phần Form đánh giá sản phẩm */}
+            <ProductRating product={this.state.product} />
+
+            {/* Danh sách đánh giá sản phẩm */}
+            <ListProductRating ratings={this.props.ratings} />
           </Container>
         )}
       </div>
@@ -124,8 +139,9 @@ class ProductDetail extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return{
-    ratings: state.ratings
+  return {
+    ratings: state.ratings,
+    user: state.user
   }
 }
 
