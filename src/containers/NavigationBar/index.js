@@ -48,7 +48,7 @@ class NavigationBar extends React.Component {
             {/* Right item */}
             <Nav className="mr-auto">
               <Link className='nav-link' to='/products'>Sản phẩm</Link>
-              <Link className='nav-link' to='/products'>Liên hệ</Link>
+              <Link className='nav-link' to='/contact'>Liên hệ</Link>
             </Nav>
 
             {/* Left item */}
