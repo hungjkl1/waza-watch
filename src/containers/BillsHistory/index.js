@@ -3,6 +3,7 @@ import { Container, Row, Col, Button } from 'react-bootstrap';
 import API from "../../core";
 import { connect } from 'react-redux';
 import './style.scss';
+import BillHistoryCell from './bill';
 
 class BillsHistory extends Component {
   constructor(props) {
@@ -23,6 +24,18 @@ class BillsHistory extends Component {
       })
       .catch(err => { alert(err); });
   }
+
+  refreshBill = () => {
+    this.service.post("bill/getBillsByUser", { userId: this.props.user._id })
+    .then(result => {
+      this.setState({
+        bills: result
+      })
+      console.log(result)
+    })
+    .catch(err => { alert(err); });
+  }
+
   render() {
     return (
       <div>
@@ -39,15 +52,8 @@ class BillsHistory extends Component {
               }
               {this.state.bills.length > 0 &&
                 <div>
-                  {this.state.bills.map((item, index) =>
-                    <div key={index} className='bill-container'>
-                      <div>
-                        <div>Thời gian đặt hàng: {item.createAt}</div>
-                        <div>Trạng thái đơn hàng: {item.deliveryState}</div>
-                        <div>Địa chỉ giao hàng: {item.address}</div>
-                        <a href='#'>Xem chi tiết</a>
-                      </div>
-                    </div>
+                  {this.state.bills.map((item) =>
+                    <BillHistoryCell key={item._id} item={item} refreshBill={this.refreshBill}/>
                   )}
                 </div>
               }
