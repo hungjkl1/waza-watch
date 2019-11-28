@@ -54,14 +54,14 @@ class NavigationBar extends React.Component {
             {/* Left item */}
             <Nav>
               {/* LOGIN AND USER INFOMATION */}
-              {!this.props.user && 
+              {!this.props.user &&
                 <Nav.Link onClick={this.hanđleShowAuthModal}>Đăng nhập</Nav.Link>
               }
 
               {this.props.user &&
                 <NavDropdown title={'Xin chào ' + this.props.user.userName}>
                   <NavDropdown.Item href="#">Thông tin cá nhân</NavDropdown.Item>
-                  <NavDropdown.Item href="#">Lịch sử đơn hàng</NavDropdown.Item>
+                  <Link className='dropdown-item' to='/bills'>Lịch sử đơn hàng</Link>
                   <NavDropdown.Divider />
                   <NavDropdown.Item className='text-danger' onClick={this.handleLogOut}>Đăng xuất</NavDropdown.Item>
                 </NavDropdown>
