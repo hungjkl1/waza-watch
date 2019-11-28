@@ -37,3 +37,11 @@
 .col--2 {
   background-color: red;
 }
+.menu-container__ul {
+  padding-left: 0;
+  li {
+    padding: 8px;
+    display: flex;
+    align-items: center;
+  }
+}

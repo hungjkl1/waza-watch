@@ -13,20 +13,57 @@ class Products extends React.Component {
     this.service = new API()
     this.state = {
       products:[],
-      brands:[]
+      brands:[],
+      category:[]
     }
   };
   
   componentDidMount(){
     this.service.post('product/products').then(result=>{
       this.service.post('brand/brands').then(brands=>{
-        this.setState({
-          products:result.data,
-          brands:brands.data
+        this.service.post('category/categories').then(category=>{
+          this.setState({
+            products:result.data,
+            brands:brands.data,
+            category: category.data
+          })
         })
       })
     })
   }
+
+  sortByBrand = async (id) => {
+    this.service.post('product/sortproductsbybrand',{sort:id}).then(result=>{
+      this.setState({
+        products: result.data
+      })
+    })
+  }
+
+  sortByCategory = async (id) => {
+    this.service.post('product/sortproductsbycategory',{sort:id}).then(result=>{
+      this.setState({
+        products: result.data
+      })
+    })
+  }
+
+  sortByPrice = async (sort) => {
+    this.service.post('product/sortproductsbyprice',{sort}).then(result=>{
+      this.setState({
+        products: result.data
+      })
+    })
+  }
+
+  getAll = async () => {
+    this.service.post('product/products').then(result=>{
+      this.setState({
+        products: result.data
+      })
+    })
+  }
+
 
   render() {
     return (
@@ -36,29 +73,47 @@ class Products extends React.Component {
 
             {/* Menu */}
             <Col md={2}>
-
               <div className='menu-container'>
                 <div className='menu-container__child'>
-                  <h5 align='left'>Các loại đồng hồ</h5>
-                  <ul className='menu-container__ul'>
-                    <li><a href='/'>Đồng hồ Nam</a></li>
-                    <li><a href='/'>Đồng hồ Nữ</a></li>
-                    <li><a href='/'>Đồng hồ rẻ tiền</a></li>
+                  <h5 align='left'>Lọc</h5>
+                  <ul className='menu-container__ul' style={{textAlign:"left"}}>
+                    <li onClick={()=>this.sortByPrice(1)}>Giá tăng dần</li>
+                    <li onClick={()=>this.sortByPrice(-1)}>Giá giảm dần</li>
                   </ul>
                 </div>
 
                 <div className='menu-container__child'>
-                  <h5 align='left'>Các hãng đồng hồ</h5>
-                  <u className='menu-container__ul'>
-                  { !_.isEmpty(this.state.brands) && 
-                    this.state.brands.map(item=>{
-                      return <li key={item._id}><Link style={{ textDecoration: 'none' }} to='/products'>{item.name}</Link></li>
-                    })
-                  }
-                  </u>
-                </div>
+                <h5 align='left'>Các loại đồng hồ</h5>
+                <ul className='menu-container__ul'>
+                <li onClick={()=>this.getAll()}>
+                <Link style={{ textDecoration: 'none' }} to='/products'>Tất cả</Link>
+                </li>
+                { !_.isEmpty(this.state.brands) && 
+                  this.state.category.map(item=>{
+                    return <li onClick={()=>this.sortByCategory(item._id)} key={item._id}><Link style={{ textDecoration: 'none' }} to='/products'>{item.name}</Link><hr/></li>
+                  })
+                }
+                </ul>
               </div>
 
+                <div className='menu-container__child'>
+                  <h5 align='left'>Các hãng đồng hồ</h5>
+                  <ul className='menu-container__ul'>
+                  <li onClick={()=>this.getAll()}>
+                  <Link style={{ textDecoration: 'none' }} to='/products'>Tất cả</Link>
+                  </li>
+                  { !_.isEmpty(this.state.brands) && 
+                    this.state.brands.map(item=>{
+                      return <li onClick={()=>this.sortByBrand(item._id)} key={item._id}><Link style={{ textDecoration: 'none' }} to='/products'>{item.name}</Link><hr/></li>
+                    })
+                  }
+                  </ul>
+
+                </div>
+
+              </div>
+
+              
             </Col>
 
             {/* Products */}
