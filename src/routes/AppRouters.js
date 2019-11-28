@@ -8,6 +8,7 @@ import Products from '../containers/Products';
 import ProductDetail from '../containers/ProductDetail';
 import ShoppingCart from '../containers/ShoppingCart';
 import NotFound from '../containers/NotFound';
+import Contact from '../containers/Contact';
 
 class AppRouters extends Component {
   render() {
@@ -20,6 +21,7 @@ class AppRouters extends Component {
             <Route path='/shoppingcart' component={ShoppingCart} />
             <Route exact path='/products' component={Products} />
             <Route path='/products/:id' component={ProductDetail} />
+            <Route path='/contact' component={Contact} />
             <Route component={NotFound} />
           </Switch>
         </div>

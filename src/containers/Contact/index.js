@@ -1,9 +1,22 @@
-import React from 'react'
+import React from 'react';
+import { Col, Row, Container } from 'react-bootstrap';
 
-export default function index() {
+const Contact = (props) => {
   return (
     <div>
-      <h1>Đây là trang liên lạc</h1>
+      <Container>
+        <h2>Contact page</h2>
+        <Row>
+          <Col md={6}>
+
+          </Col>
+
+          <Col md={6}>
+            <h2>Map</h2>
+          </Col>
+        </Row>
+      </Container>
     </div>
   )
 }
+export default Contact;
