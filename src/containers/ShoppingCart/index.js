@@ -54,7 +54,28 @@ class ShoppingCart extends Component {
       const bill = {
         address: this.state.address,
         billDetail: product,
-        nonUser
+        nonUser,
+        payment: this.state.detail
+      }
+      this.service.post('bill/createBill', { data: bill }).then(result => {
+        Swal.fire({
+          toast: true,
+          position: "top",
+          showConfirmButton: false,
+          timer: 1500,
+          type: "success",
+          title: "Thanh toán thành công"
+        });
+      }).catch(err => {
+        alert(err)
+      })
+    } else {
+      const bill = {
+        address: this.state.address,
+        billDetail: product,
+        user: this.props.user,
+        isUser: true,
+        payment: this.state.detail
       }
       this.service.post('bill/createBill', { data: bill }).then(result => {
         Swal.fire({

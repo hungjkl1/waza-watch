@@ -6,6 +6,12 @@ class FormDelivery extends React.Component {
   constructor(props) {
     super(props);
     this.state = {}
+    this.userForm = React.createRef();
+  }
+
+  submitForm=()=>{
+    alert('danger')
+    this.userForm.current.dispatchEvent(new Event('submit', { cancelable: true }))
   }
 
   render() {
@@ -16,7 +22,7 @@ class FormDelivery extends React.Component {
 
         {/* Khi người dùng đã đăng nhập */}
         {this.props.user &&
-          <Form onSubmit={this.props.handleSubmit}>
+          <Form onSubmit={this.props.handleSubmit} ref={this.userForm}>
             <Form.Group>
               <Form.Label>Địa chỉ giao hàng</Form.Label>
               <Form.Control onChange={this.props.handleOnChange} name='address' type="string" />
@@ -32,6 +38,7 @@ class FormDelivery extends React.Component {
             // shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
             onSuccess={(details, data) => {
               this.props.getPaypalDetail(details)
+              this.submitForm()
             }}
             options={{
               clientId: "PRODUCTION_CLIENT_ID"

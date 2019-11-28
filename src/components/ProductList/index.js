@@ -53,7 +53,7 @@ class ProductList extends React.Component {
             { this.props.products &&
               this.props.products.map((item) => {
                 return (
-                  <Col xs={6} sm={6} md={3}>
+                  <Col xs={6} sm={6} md={3} key={item._id}>
                     {/* Link đến chi tiết sản phẩm */}
                     <Link to={'/products/' + item._id} className='link-product'>
                       <div className='product-container'>

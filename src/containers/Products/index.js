@@ -40,11 +40,11 @@ class Products extends React.Component {
               <div className='menu-container'>
                 <div className='menu-container__child'>
                   <h5 align='left'>Các loại đồng hồ</h5>
-                  <ui className='menu-container__ul'>
+                  <ul className='menu-container__ul'>
                     <li><a href='/'>Đồng hồ Nam</a></li>
                     <li><a href='/'>Đồng hồ Nữ</a></li>
                     <li><a href='/'>Đồng hồ rẻ tiền</a></li>
-                  </ui>
+                  </ul>
                 </div>
 
                 <div className='menu-container__child'>
