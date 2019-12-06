@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Col, Row, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link } from '@reach/router';
 import { connect } from 'react-redux';
 import products from './products.json';
 import Swal from 'sweetalert2';
@@ -19,7 +19,6 @@ class ProductList extends React.Component {
     };
   };
 
-  // FIXME : Để Fetch data với API
   componentDidMount() {
     this.setState(() => ({
       products: products
