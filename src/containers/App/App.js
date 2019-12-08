@@ -1,22 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Router } from '@reach/router';
 
 // Components
 import NavigationBar from '../NavigationBar';
 import Home from '../Home';
-import Product from '../Products';
+import Products from '../Products';
 
-class App extends React.Component {
-  render() {
-    return (
-      <div>
-        <NavigationBar />
-        <Router>
-          <Home path='/' />
-          <Product path='/product' />
-        </Router>
-      </div>
-    )
-  }
+const App = (props) => {
+  const { getCurrentUser } = props;
+  useEffect(() => {
+    getCurrentUser();
+  }, [])
+
+  return (
+    <div>
+      <NavigationBar />
+      <Router>
+        <Home path='/' />
+        <Products path='/products' />
+      </Router>
+    </div>
+  )
 }
+
 export default App

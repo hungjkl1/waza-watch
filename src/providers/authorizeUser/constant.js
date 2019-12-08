@@ -1,4 +1,6 @@
-export const GET_USER_FROM_LOCAL_STORAGE = 'GET_USER';
-export const USER_LOGIN = 'USER_LOGIN';
-export const USER_LOGOUT = 'USER_LOGOUT';
-export const USER_SIGNIN = 'USER_SIGNIN'; 
+export const GET_USER_FROM_LOCAL_STORAGE = 'GET_USER_FROM_LOCAL_STORAGE';
+
+export const SET_USER = 'SET_USER';
+export const REMOVE_USER = 'REMOVE_USER';
+
+export const USER_SIGN_UP = 'USER_SIGN_UP'; 
