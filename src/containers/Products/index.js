@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Col, Row, Table } from 'react-bootstrap';
-import ProductList from '../../components/ProductList';
+import ProductList from '../ProductList';
 // Style
 import { Link } from '@reach/router';
 import './products.scss';
@@ -108,14 +108,11 @@ class Products extends React.Component {
                       })
                     }
                   </ul>
-
                 </div>
-
               </div>
 
 
             </Col>
-
             {/* Products */}
             <Col md={10}>
               <ProductList products={this.state.products} />

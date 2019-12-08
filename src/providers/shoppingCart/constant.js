@@ -1,0 +1,5 @@
+export const GET_ITEMS_FROM_LS = 'GET_ITEMS_FROM_LS';
+export const ADD_ITEM = 'ADD_ITEM';
+export const REMOVE_ITEM = 'REMOVE_ITEM';
+export const CHANGE_QUANTITY = 'CHANGE_QUANTITY';
+export const REMOVE_ALL_ITEMS = 'REMOVE_ALL_ITEMS';

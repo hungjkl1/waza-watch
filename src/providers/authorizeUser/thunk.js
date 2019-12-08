@@ -6,7 +6,6 @@ const service = new API();
 export const getUserFromLS = () => {
   return (dispatch) => {
     const currentUser = JSON.parse(localStorage.getItem('user'));
-    console.log(currentUser);
     if (currentUser) {
       dispatch(getUserFromLocalStorage(currentUser));
     }

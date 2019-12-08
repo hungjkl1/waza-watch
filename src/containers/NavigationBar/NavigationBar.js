@@ -22,7 +22,7 @@ const NavigationBar = (props) => {
         <Link to='/'>
           <Navbar.Brand>
             <img src="http://www.myiconfinder.com/uploads/iconsets/256-256-27836c2559cf3f445f078b79b5322247.png"
-              width="30" height="30" className="logo-brand d-inline-block align-top"
+              width="30" height="30" className="logo-brand d-inline-block align-top" alt='logo'
               alt="logo" />
             Waza Watch
           </Navbar.Brand>
@@ -51,14 +51,14 @@ const NavigationBar = (props) => {
               </NavDropdown>
             }
 
-            {/* <Link className='nav-link' to='/shoppingcart'>
+            <Link className='nav-link' to='/shoppingcart'>
               <div className='cart-items-number'>
-                {this.props.cartItems.length}
+                {props.cartItems.length}
               </div>
               <img
                 width='22' height='22' className="logo-cart d-inline-block align-center ml-1"
                 src="https://image.flaticon.com/icons/svg/1170/1170678.svg" />
-            </Link> */}
+            </Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>

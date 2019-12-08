@@ -6,11 +6,13 @@ import NavigationBar from '../NavigationBar';
 import Home from '../Home';
 import Products from '../Products';
 import ProductDetail from '../ProductDetail';
+import ShoppingCart from '../ShoppingCart';
 
 const App = (props) => {
-  const { getCurrentUser } = props;
+  const { getCurrentUser, getCart } = props;
   useEffect(() => {
     getCurrentUser();
+    getCart();
   }, [])
 
   return (
@@ -20,9 +22,10 @@ const App = (props) => {
         <Home path='/' />
         <Products path='/products' />
         <ProductDetail path='/products/:productID' />
+        <ShoppingCart path='/shoppingcart' />
       </Router>
     </div>
-      )
-    }
-    
-    export default App
+  )
+}
+
+export default App
