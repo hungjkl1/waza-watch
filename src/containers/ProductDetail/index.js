@@ -30,7 +30,7 @@ class ProductDetail extends React.Component {
   componentDidMount() {
     // Lấy thông tin sản phẩm 
     this.service
-      .post("product/getProduct", { id: this.props.match.params.id })
+      .post("product/getProduct", { id: this.props.productID })
       .then(result => {
         this.setState({
           product: result.data.result
@@ -38,7 +38,7 @@ class ProductDetail extends React.Component {
       })
       .catch(err => { alert(err); });
     // Lấy danh sách Ratings
-    this.props.dispatch(getRatings(this.props.match.params.id));
+    this.props.dispatch(getRatings(this.props.productID));
   }
   
 

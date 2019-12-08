@@ -5,6 +5,7 @@ import { Router } from '@reach/router';
 import NavigationBar from '../NavigationBar';
 import Home from '../Home';
 import Products from '../Products';
+import ProductDetail from '../ProductDetail';
 
 const App = (props) => {
   const { getCurrentUser } = props;
@@ -18,9 +19,10 @@ const App = (props) => {
       <Router>
         <Home path='/' />
         <Products path='/products' />
+        <ProductDetail path='/products/:productID' />
       </Router>
     </div>
-  )
-}
-
-export default App
+      )
+    }
+    
+    export default App

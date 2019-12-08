@@ -11,11 +11,13 @@ const LoginModal = (props) => {
   const handleLogin = (values) => {
     const { login } = props;
     login(values);
+    props.hide();
   };
 
   const handleSignUp = (values) => {
     const { signup } = props;
     signup(values);
+    props.hide();
   };
 
   return (
