@@ -6,6 +6,8 @@ import { Container, Row, Col, Table, Button } from 'react-bootstrap';
 import _ from 'lodash';
 import './style.scss';
 import API from '../../core'
+// components
+import BillCreate from '../../components/BillCreateForm';
 
 class ShoppingCart extends Component {
   constructor(props) {
@@ -26,9 +28,7 @@ class ShoppingCart extends Component {
     })
     return totalPrice;
   }
-  handleRemoveItem = (item) => {
-    this.props.dispatch({ type: 'REMOVE_ITEM', item })
-  }
+
   getPaypalDetail = (detail) => {
     this.setState({
       detail
@@ -98,13 +98,13 @@ class ShoppingCart extends Component {
     })
   }
 
-  changeQuantity = (item, quantity) => {
-    this.props.dispatch({
-      type: 'CHANGE_ITEM_QUANTITY',
-      item, quantity
-    })
-  }
+  handleCreateBill = (values) => {
+    this.props.removeAllItems();
+    console.log(values);
+  };
+
   render() {
+    console.log("USER: ", this.props.user)
     return (
       <div className='component-shopping-cart'>
         <Container>
@@ -142,10 +142,10 @@ class ShoppingCart extends Component {
                         <td>{this.formatNumber(item.price)} VND</td>
                         <td>
                           <div className='quantity-container'>
-                            <Button className='mr-2' variant="secondary" size='sm'
+                            <Button className='mr-2' variant="secondary" size='sm' disabled={item.quantity <= 1}
                               onClick={() => this.props.changeQuantity(item, item.quantity - 1)}> - </Button>
-                            {item.quantity}
-                            <Button className='ml-2' variant="secondary" size='sm'
+                            <div>{item.quantity}</div>
+                            <Button className='ml-2' variant="secondary" size='sm' disabled={item.quantity >= 99}
                               onClick={() => this.props.changeQuantity(item, item.quantity + 1)}> + </Button>
                           </div>
                         </td>
@@ -163,11 +163,9 @@ class ShoppingCart extends Component {
               <Col>
                 <div className='total-price'>
                   <h2>Tổng số tiền</h2>
-                  <h4>{this.formatNumber(this.getTotalPrice())}  VND</h4>
-
-                  {this.renderForm()}
-
-
+                  <h4>{this.formatNumber(this.getTotalPrice())} VND</h4>
+                  <hr />
+                  <BillCreate onSubmit={this.handleCreateBill} user={this.props.user} />
                 </div>
               </Col>
             </Row>
@@ -177,7 +175,5 @@ class ShoppingCart extends Component {
     );
   };
 };
-
-
 
 export default ShoppingCart;

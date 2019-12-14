@@ -1,5 +1,5 @@
-import { getItemsFromLocalStorage, addItem, removeItem, changeQuantity } from './actions';
-import { addItemSuccess } from '../../sweetAlert';
+import { getItemsFromLocalStorage, addItem, removeItem, changeQuantity, removeAllItems } from './actions';
+import { addItemSuccess, addItemFail } from '../../sweetAlert';
 
 export const getItemsFromLS = () => {
   return (dispatch) => {
@@ -20,10 +20,16 @@ export const addItemToCart = (item, quantity) => {
       const existItem = cart.findIndex(({ _id }) => { return String(_id) === String(item._id) })
       // Nếu item đã tồn tại thì tăng quantity
       if (existItem !== -1) {
-        cart[existItem].quantity = Number(cart[existItem].quantity) + Number(quantity);
-        localStorage.setItem('cart', JSON.stringify(cart));
-        dispatch(addItem(cart));
-        addItemSuccess.fire();
+        // Kiểm tra item không vượt quá 99
+        if (Number(cart[existItem].quantity) + Number(quantity) < 100) {
+          cart[existItem].quantity = Number(cart[existItem].quantity) + Number(quantity);
+          localStorage.setItem('cart', JSON.stringify(cart));
+          dispatch(addItem(cart));
+          addItemSuccess.fire();
+        }
+        else {
+          addItemFail.fire();
+        }
       } else {
         const newCart = [...cart, { ...item, quantity }];
         localStorage.setItem('cart', JSON.stringify(newCart))
@@ -53,4 +59,11 @@ export const changeQuantityItem = (item, quantity) => {
     localStorage.setItem('cart', JSON.stringify(cart))
     dispatch(changeQuantity(cart))
   }
-}
+};
+
+export const removeAllItemInCart = () => {
+  return (dispatch) => {
+    localStorage.setItem('cart', JSON.stringify([]))
+    dispatch(removeAllItems());
+  }
+};

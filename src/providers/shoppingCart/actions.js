@@ -1,4 +1,4 @@
-import { GET_ITEMS_FROM_LS, ADD_ITEM, REMOVE_ITEM, CHANGE_QUANTITY } from './constant';
+import { GET_ITEMS_FROM_LS, ADD_ITEM, REMOVE_ITEM, CHANGE_QUANTITY, REMOVE_ALL_ITEMS } from './constant';
 
 export const getItemsFromLocalStorage = (data) => ({
   type: GET_ITEMS_FROM_LS,
@@ -20,6 +20,6 @@ export const changeQuantity = (data) => ({
   data
 });
 
-export const removerAllItems = () => ({
-
+export const removeAllItems = () => ({
+  type: REMOVE_ALL_ITEMS
 });

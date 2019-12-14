@@ -16,8 +16,10 @@ export const userLogin = (data) => {
   return (dispatch) => {
     service.post('user/userlogin', data)
       .then((result) => {
-        localStorage.setItem('user', JSON.stringify(result.data.result))
-        dispatch(setUser(result.data.result));
+        if (result.data.result) {
+          localStorage.setItem('user', JSON.stringify(result.data.result))
+          dispatch(setUser(result.data.result));
+        }
       });
   }
 };

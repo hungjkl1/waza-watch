@@ -1,4 +1,4 @@
-import { GET_ITEMS_FROM_LS, ADD_ITEM, REMOVE_ITEM, CHANGE_QUANTITY } from './constant';
+import { GET_ITEMS_FROM_LS, ADD_ITEM, REMOVE_ITEM, CHANGE_QUANTITY, REMOVE_ALL_ITEMS } from './constant';
 const initialState = [];
 
 const shoppingCartReducer = (state = initialState, action) => {
@@ -15,6 +15,9 @@ const shoppingCartReducer = (state = initialState, action) => {
 
     case CHANGE_QUANTITY:
       return action.data
+
+    case REMOVE_ALL_ITEMS:
+      return []
 
     default:
       return state;
