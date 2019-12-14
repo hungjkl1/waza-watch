@@ -8,7 +8,6 @@ class FormDelivery extends React.Component {
     this.state = {}
     this.userForm = React.createRef();
     this.nonUserForm = React.createRef();
-
   }
 
   submitForm=()=>{

@@ -7,6 +7,7 @@ import Home from '../Home';
 import Products from '../Products';
 import ProductDetail from '../ProductDetail';
 import ShoppingCart from '../ShoppingCart';
+import Contact from '../Contact';
 
 const App = (props) => {
   const { getCurrentUser, getCart } = props;
@@ -23,6 +24,7 @@ const App = (props) => {
         <Products path='/products' />
         <ProductDetail path='/products/:productID' />
         <ShoppingCart path='/shoppingcart' />
+        <Contact path='/contact' />
       </Router>
     </div>
   )

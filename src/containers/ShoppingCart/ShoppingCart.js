@@ -19,7 +19,7 @@ class ShoppingCart extends Component {
   }
   formatNumber = (num) => {
     return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
-  }
+  };
 
   getTotalPrice = () => {
     let totalPrice = 0;
@@ -27,13 +27,14 @@ class ShoppingCart extends Component {
       totalPrice += Number(item.quantity) * Number(item.price);
     })
     return totalPrice;
-  }
+  };
 
   getPaypalDetail = (detail) => {
     this.setState({
       detail
     })
-  }
+  };
+  
   renderForm = () => {
     const json = localStorage.getItem('user');
     const user = JSON.parse(json);
@@ -104,7 +105,6 @@ class ShoppingCart extends Component {
   };
 
   render() {
-    console.log("USER: ", this.props.user)
     return (
       <div className='component-shopping-cart'>
         <Container>
@@ -164,6 +164,7 @@ class ShoppingCart extends Component {
                 <div className='total-price'>
                   <h2>Tổng số tiền</h2>
                   <h4>{this.formatNumber(this.getTotalPrice())} VND</h4>
+                  
                   <hr />
                   <BillCreate onSubmit={this.handleCreateBill} user={this.props.user} />
                 </div>
