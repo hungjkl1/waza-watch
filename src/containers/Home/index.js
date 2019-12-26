@@ -7,7 +7,7 @@ import image from './image.json';
 import './home.scss';
 const Home = (props) => {
   return (
-    <div>
+    <div className="home-component">
       <Container>
         <Row>
           <Col>

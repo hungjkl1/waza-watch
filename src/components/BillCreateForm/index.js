@@ -10,7 +10,7 @@ const BillCreateForm = (props) => {
   const { handleSubmit, submitting } = props
   return (
     <div>
-      
+
       {_.isEmpty(props.user) &&
         <Form onSubmit={handleSubmit}>
           <Field name='name' type='text' placeholder='Họ tên'
@@ -26,7 +26,7 @@ const BillCreateForm = (props) => {
             type="submit" disabled={submitting} block>Thanh toán</Button>
         </Form>
       }
-
+      
       {!_.isEmpty(props.user) &&
         <Form onSubmit={handleSubmit}>
           <Field name='address' type='text' placeholder='Địa chỉ giao hàng'
